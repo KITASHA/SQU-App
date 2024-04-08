@@ -1,7 +1,7 @@
 class PartsController < ApplicationController
-  before_action :set_songs, only: [:index, :new, :create]
+  before_action :set_songs, only: [:index, :new, :create,:edit]
+  before_action :set_part, only: [:edit, :update, :destroy]
   def index
-    @songs = Song.all
     @parts = Part.all
   end
 
@@ -21,14 +21,11 @@ class PartsController < ApplicationController
   end
 
   def edit
-    @part = Part.find(params[:id])
-    @songs = Song.all
     @song_1 = @songs.first
     @song_2 = @songs.second
   end
 
   def update
-    @part = Part.find(params[:id])
     if @part.update(part_params)
       redirect_to parts_path
     else
@@ -37,7 +34,6 @@ class PartsController < ApplicationController
   end
 
   def destroy
-    @part = Part.find(params[:id])
     @part.destroy
     redirect_to parts_path
   end
@@ -47,6 +43,10 @@ class PartsController < ApplicationController
 
   def set_songs
     @songs = Song.all
+  end
+
+  def set_part
+    @part = Part.find(params[:id])
   end
 
   def part_params
