@@ -45,10 +45,14 @@
         <%= link_to "曲の追加・削除", new_song_path, class: "btn btn-secondary mb-1" %>
         <!-- テーブル情報を出力 -->
         <button class="btn btn-secondary mb-1">バンドを分ける</button>
-        <!-- カラムとレコードをリセット -->
-        <%= link_to "曲と参加者のリセット", reset_all_path, data: {turbo_method: :delete}, class: "btn btn-danger mb-1", id: "reset-data"%>
       </div>
       <!-- ボタンの終了 -->
     </div>
+    <div class="col-md-12 justify-content-end" style="margin-top: 100px;">
+      <h5>曲と参加者をリセットする（取り消せません）</h5>
+    <div class="btn-group-vertical float-left">
+  <!-- カラムとレコードをリセット -->
+  <%= link_to "リセット", reset_all_path, data: {turbo_method: :delete}, class: "btn btn-danger mb-1 mr-1", id: "reset-data"%>
+</div>
   </div>
 </div>
