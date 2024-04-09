@@ -1,0 +1,151 @@
+
+[1mFrom:[0m /home/kitagawa/tech_camp/Orignal/SUQ-App/app/controllers/bands_controller.rb:5 BandsController#create:
+
+     [1;34m2[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m3[0m:   parts = [1;34;4mPart[0m.all
+     [1;34m4[0m:   song_parts = [1;34;4mSongPart[0m.all
+ =>  [1;34m5[0m:   binding.pry
+     [1;34m6[0m:   [1;34m# 最大バンド数を計算[0m
+     [1;34m7[0m:   max_bands = (parts.size.to_f / song_parts.size).ceil
+     [1;34m8[0m:   parts_1 = parts.map { |p| { [35mnickname[0m: p.nickname, [35msong_part[0m: song_parts.find_by([35mid[0m: p.song_part_id_1)&.name } }
+     [1;34m9[0m:   parts_2 = parts.map { |p| { [35mnickname[0m: p.nickname, [35msong_part[0m: song_parts.find_by([35mid[0m: p.song_part_id_2)&.name } }
+    [1;34m10[0m:   [1;34m# parts_1とparts_2のそれぞれについて席次表を生成して保存[0m
+    [1;34m11[0m: 
+    [1;34m12[0m:   [parts_1, parts_2].each [32mdo[0m |parts|
+    [1;34m13[0m:     parts = parts.shuffle
+    [1;34m14[0m:     bands = song_parts.map { |part| { [35mpart[0m: part.name, [35mbands[0m: [1;34;4mArray[0m.new(max_bands) } }
+    [1;34m15[0m:     parts_cycle = parts.cycle
+    [1;34m16[0m:     bands.each [32mdo[0m |band|
+    [1;34m17[0m:       band[[33m:bands[0m].map! [32mdo[0m |_|
+    [1;34m18[0m:         parts_cycle_next = parts_cycle.next
+    [1;34m19[0m:         [32mif[0m parts_cycle_next[[33m:song_part[0m] == band[[33m:part[0m]
+    [1;34m20[0m:           parts_cycle_next[[33m:nickname[0m]
+    [1;34m21[0m:         [32melse[0m
+    [1;34m22[0m:           [31m[1;31m"[0m[31mNot found[1;31m"[0m[31m[0m
+    [1;34m23[0m:         [32mend[0m
+    [1;34m24[0m:       [32mend[0m
+    [1;34m25[0m:     [32mend[0m
+    [1;34m26[0m:     save_bands_data(bands)
+    [1;34m27[0m:   [32mend[0m
+    [1;34m28[0m: [32mend[0m
+
+=> [[32m#<Part:0x00007fdb6b912500[0m
+  id: [1;34m3[0m,
+  nickname: [31m[1;31m"[0m[31mname 1[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m2[0m,
+  song_part_id_2: [1;34m2[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m24[0m:[1;35m39.444128000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m24[0m:[1;35m39.444128000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a2778[0m
+  id: [1;34m4[0m,
+  nickname: [31m[1;31m"[0m[31mname 2[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m3[0m,
+  song_part_id_2: [1;34m3[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m24[0m:[1;35m51.352776000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m24[0m:[1;35m51.352776000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a26d8[0m
+  id: [1;34m5[0m,
+  nickname: [31m[1;31m"[0m[31mname 3[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m4[0m,
+  song_part_id_2: [1;34m5[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;34m06[0m.[1;37;41m702139000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;34m06[0m.[1;37;41m702139000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a24f8[0m
+  id: [1;34m6[0m,
+  nickname: [31m[1;31m"[0m[31mname 4[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m5[0m,
+  song_part_id_2: [1;34m5[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;35m18.948291000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;35m18.948291000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a2318[0m
+  id: [1;34m7[0m,
+  nickname: [31m[1;31m"[0m[31mname 5[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m6[0m,
+  song_part_id_2: [1;34m6[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;35m34.520255000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;35m34.520255000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a2278[0m
+  id: [1;34m8[0m,
+  nickname: [31m[1;31m"[0m[31mname 6[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m1[0m,
+  song_part_id_2: [1;34m1[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m25[0m:[1;35m50.666036000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m07[0m:[1;34m41[0m:[1;35m39.193203000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a2098[0m
+  id: [1;34m9[0m,
+  nickname: [31m[1;31m"[0m[31mname 7[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m2[0m,
+  song_part_id_2: [1;34m1[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m26[0m:[1;35m45.005356000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m26[0m:[1;35m45.005356000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a1ff8[0m
+  id: [1;34m10[0m,
+  nickname: [31m[1;31m"[0m[31mname 8[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m3[0m,
+  song_part_id_2: [1;34m4[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m26[0m:[1;35m59.790417000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m26[0m:[1;35m59.790417000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a1b98[0m
+  id: [1;34m11[0m,
+  nickname: [31m[1;31m"[0m[31mname 9[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m5[0m,
+  song_part_id_2: [1;34m5[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m14.964135000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m14.964135000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a1738[0m
+  id: [1;34m12[0m,
+  nickname: [31m[1;31m"[0m[31mname 10[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m4[0m,
+  song_part_id_2: [1;34m5[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m38.626176000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m38.626176000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a1698[0m
+  id: [1;34m13[0m,
+  nickname: [31m[1;31m"[0m[31mname 11[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m6[0m,
+  song_part_id_2: [1;34m6[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m55.458644000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m27[0m:[1;35m55.458644000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a15f8[0m
+  id: [1;34m14[0m,
+  nickname: [31m[1;31m"[0m[31mname 12[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m1[0m,
+  song_part_id_2: [1;34m0[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m28[0m:[1;35m16.499949000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m07[0m:[1;34m41[0m:[1;35m44.738104000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a14b8[0m
+  id: [1;34m15[0m,
+  nickname: [31m[1;31m"[0m[31mname 13[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m2[0m,
+  song_part_id_2: [1;34m3[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m28[0m:[1;35m34.123200000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m28[0m:[1;35m34.123200000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a1378[0m
+  id: [1;34m16[0m,
+  nickname: [31m[1;31m"[0m[31mname 14[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m4[0m,
+  song_part_id_2: [1;34m4[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m28[0m:[1;35m52.431134000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m28[0m:[1;35m52.431134000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m,
+ [32m#<Part:0x00007fdb6b8a12d8[0m
+  id: [1;34m17[0m,
+  nickname: [31m[1;31m"[0m[31mname 15[1;31m"[0m[31m[0m,
+  song_part_id_1: [1;34m5[0m,
+  song_part_id_2: [1;34m5[0m,
+  user_id: [1;34m2[0m,
+  created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m29[0m:[1;35m43.858603000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+  updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mApr[0m [1;34m2024[0m [1;34m00[0m:[1;34m29[0m:[1;35m43.858603000[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m]

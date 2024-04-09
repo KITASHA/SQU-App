@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :songs, only: [:new,:create,:destroy]
   resources :parts 
-  resources :bands, only: :index
+  resources :bands, only: :create
   delete '/reset_all', to: 'application#reset_all'
 end

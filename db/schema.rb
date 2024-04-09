@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_024849) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_09_030814) do
+  create_table "bands", charset: "utf8", force: :cascade do |t|
+    t.string "part_name"
+    t.string "band_member"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parts", charset: "utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.integer "song_part_id_1"
