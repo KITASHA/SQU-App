@@ -9,7 +9,8 @@ class BandsController < ApplicationController
     parts_2 = parts.map { |p| { nickname: p.nickname, song_part: song_parts.find_by(id: p.song_part_id_2)&.name } }
 
     # parts_1とparts_2のそれぞれについて席次表を生成して保存
-    binding.pry
+    #binding.pry
+
     [parts_1, parts_2].each do |parts|
       parts = parts.shuffle
       bands = song_parts.map { |part| { part: part.name, bands: Array.new(max_bands) } }
