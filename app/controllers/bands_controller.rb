@@ -12,7 +12,7 @@ class BandsController < ApplicationController
     order = ["Lead", "top", "2nd", "3rd", "Bass", "V.P."]
     @bands_1 = order.map { |part_name| [part_name, bands_1[part_name]] }.to_h
     @bands_2 = order.map { |part_name| [part_name, bands_2[part_name]] }.to_h
-    binding.pry  
+#    binding.pry  
     @song_1 = Song.first
     @song_2 = Song.second
   end

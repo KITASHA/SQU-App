@@ -7,7 +7,7 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="mb-3">
-          <%= f.label :ユーザーネーム, class: "form-label" %>
+          <%= f.label :name, "ユーザーネーム", class: "form-label" %>
           <%= f.email_field :name, autofocus: true, autocomplete: "name", class: "form-control", required: true %>
           <div class="invalid-feedback">
             Please provide a valid neme.
@@ -15,7 +15,7 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :メールアドレス, class: "form-label" %>
+          <%= f.label :email, "メールアドレス", class: "form-label" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
           <div class="invalid-feedback">
             Please provide a valid email.
@@ -23,7 +23,7 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :パスワード, class: "form-label" %>
+          <%= f.label :password, "パスワード", class: "form-label" %>
           <% if @minimum_password_length %>
             <em class="small">(<%= @minimum_password_length %> 文字以上で入力ください)</em>
           <% end %>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="mb-3">
-          <%= f.label :パスワード_確認用, class: "form-label" %> <i>(もう一度入力してください)</i>
+          <%= f.label :password_confirmation, "パスワード確認", class: "form-label" %> <i>(もう一度入力してください)</i>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
           <div class="invalid-feedback">
             Password confirmation does not match.
