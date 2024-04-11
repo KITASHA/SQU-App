@@ -30,7 +30,4 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  activerecord:
-    attributes:
-      model_name:
-        password: "Password"
+  hello: "Hello world"
