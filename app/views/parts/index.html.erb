@@ -44,9 +44,7 @@
         <!-- カラム追加フォームへの遷移 -->
         <%= link_to "曲の追加・削除", new_song_path, class: "btn btn-secondary mb-1" %>
         <!-- テーブル情報を出力 -->
-        <%= form_with(url: bands_path, method: "post") do %>
-          <%= button_tag "バンドを分ける", class: "btn btn-secondary mb-1", type: "submit" %>
-        <% end %>
+        <%= link_to "バンドを分ける", bands_path, class: "btn btn-secondary mb-1" %>
       </div>
       <!-- ボタンの終了 -->
     </div>

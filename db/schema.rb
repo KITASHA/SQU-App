@@ -12,8 +12,8 @@
 
 ActiveRecord::Schema[7.0].define(version: 2024_04_09_030814) do
   create_table "bands", charset: "utf8", force: :cascade do |t|
-    t.string "part_name"
-    t.string "band_member"
+    t.string "song_part"
+    t.text "members"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

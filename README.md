@@ -28,3 +28,10 @@
 
 ### Association
 --has_many :parts
+
+## Bands Table
+| Column             |Type        |Options                         |
+|--------------------|------------|--------------------------------|
+| song               | references | null: false, foreign_key: true |
+|        | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |

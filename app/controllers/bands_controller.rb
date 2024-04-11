@@ -1,42 +1,47 @@
 class BandsController < ApplicationController
-  def create
+  def index
     parts = Part.all
     song_parts = SongPart.all
+    song_part_names = song_parts.pluck(:name)
 
-    # 最大バンド数を計算
-    max_bands = (parts.size.to_f / song_parts.size).ceil
-    parts_1 = parts.map { |p| { nickname: p.nickname, song_part: song_parts.find_by(id: p.song_part_id_1)&.name } }
-    parts_2 = parts.map { |p| { nickname: p.nickname, song_part: song_parts.find_by(id: p.song_part_id_2)&.name } }
+    # バンドの準備
+    bands_1 = prepare_bands(parts, song_part_names)
+    bands_2 = prepare_bands(parts, song_part_names)
 
-    # parts_1とparts_2のそれぞれについて席次表を生成して保存
-    #binding.pry
+    @bands_1=bands_1
+    @bands_2=bands_2
 
-    [parts_1, parts_2].each do |parts|
-      parts = parts.shuffle
-      bands = song_parts.map { |part| { part: part.name, bands: Array.new(max_bands) } }
-      parts_cycle = parts.cycle
-      bands.each do |band|
-        band[:bands].map! do |_|
-          parts_cycle_next = parts_cycle.next
-          if parts_cycle_next[:song_part] == band[:part]
-            parts_cycle_next[:nickname]
-          else
-            "Not found"
-          end
-        end
-      end
-      save_bands_data(bands)
-    end
+    @song_1 = Song.first
+    @song_2 = Song.second
   end
 
   private
 
-  # bandsテーブルのデータを保存するためのメソッド
-  def save_bands_data(bands)
-    bands.each do |row|
-      row[:bands].each_with_index do |nickname, index|
-        Band.create(part_name: row[:part], band_member: nickname)
+  def prepare_bands(parts, song_part_names)
+    # 各パートごとにニックネームをまとめる
+    grouped_parts = parts.group_by { |part| part[:song_part_id_1] }
+
+    # バンドを準備
+    bands = {}
+
+    # パートごとにバンドを構築
+    grouped_parts.each do |part, members|
+      bands[song_part_names[part]] = members.map { |member| member[:nickname] }
+    end
+
+    # 最大バンド数を取得
+    max_band_count = grouped_parts.values.map(&:size).max
+
+    # 最大バンド数に満たない配列で、配列内の要素をコピーしてすべての配列の要素数を同じにする
+    bands.each do |part, members|
+      members.shuffle! # メンバーをランダムに並び替える
+      while members.size < max_band_count
+        element_to_copy = members[members.size % members.size]
+        members << element_to_copy
       end
     end
+
+    bands
   end
+
 end

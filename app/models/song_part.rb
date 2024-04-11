@@ -2,11 +2,11 @@ class SongPart < ActiveHash::Base
   self.data = [
     { id: 0, name: '---' },
     { id: 1, name: 'Lead' },
-    { id: 2, name: '1st' },
-    { id: 3, name: '2ed' },
-    { id: 4, name: '3rd' },
+    { id: 2, name: 'top' },
+    { id: 3, name: 'second' },
+    { id: 4, name: 'third' },
     { id: 5, name: 'Bass' },
-    { id: 6, name: 'V.P.' },
+    { id: 6, name: 'percussion' },
 ]
 
 include ActiveHash::Associations
