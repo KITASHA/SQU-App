@@ -7,21 +7,18 @@
                 <thead>
                     <tr>
                         <th>Part</th>
-                        <th>Lead</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>Bass</th>
-                        <th>V.P</th>
+                        <% @bands_1.each do |part, _| %>
+                            <th><%= part %></th>
+                        <% end %>
                     </tr>
                 </thead>
                 <tbody>
                     <% max_band_count = @bands_1.values.map(&:size).max %>
-                    <% max_band_count.times do |i|%>
+                    <% max_band_count.times do |i| %>
                         <tr>
                             <td>Band<%= i+1 %></td>
-                            <% @bands_1.sort.to_h.each do |part, members| %>
-                                <td><%= members[i] %></td>
+                            <% @bands_1.each do |_, members| %>
+                                <td><%= members[i] if members[i] %></td>
                             <% end %>
                         </tr>
                     <% end %>
@@ -35,12 +32,9 @@
                 <thead>
                     <tr>
                         <th>Part</th>
-                        <th>Lead</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>Bass</th>
-                        <th>V.P</th>
+                        <% @bands_2.each do |part, _| %>
+                            <th><%= part %></th>
+                        <% end %>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,8 +42,8 @@
                     <% max_band_count.times do |i|%>
                         <tr>
                             <td>Band<%= i+1 %></td>
-                            <% @bands_2.sort.to_h.each do |part, members| %>
-                                <td><%= members[i] %></td>
+                            <% @bands_2.each do |_, members| %>
+                                <td><%= members[i] if members[i] %></td>
                             <% end %>
                         </tr>
                     <% end %>
