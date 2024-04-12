@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def reset_all
-    Part.delete_all
-    Song.delete_all
     if params[:password] == ENV['BASIC_AUTH_PASSWORD_SQUARE']
       head :ok
+      Part.delete_all
+      Song.delete_all
     else
       head :forbidden
     end

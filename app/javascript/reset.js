@@ -23,4 +23,5 @@ const reset = () => {
     }
   });
 }
+
 window.addEventListener("turbo:load", reset);
