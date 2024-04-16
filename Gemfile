@@ -68,6 +68,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "webdrivers"
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -78,11 +79,11 @@ group :production do
   gem 'pg'
 end
 
+gem 'pry-rails'
+
 gem 'bootstrap', '~> 5.2.3'
 gem 'jquery-rails'
 gem 'devise'
 gem 'active_hash'
-gem 'google_drive'
-gem 'pry-rails'
-gem 'selenium-webdriver'
+
 
