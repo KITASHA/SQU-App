@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :devise_controller?
-  before_action :basic_auth, if: :parts_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def reset_all
