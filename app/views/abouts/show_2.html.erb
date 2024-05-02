@@ -1,26 +1,91 @@
-   
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="mb-auto">
-    <div>
-      <h3 class="float-md-start mb-0">Cover</h3>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
-        <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
-        <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
-      </nav>
+<div class="container marketing">
+  <!-- Three columns of text below the carousel -->
+  <div class="col-md-12" style="margin-top: 80px; text-align: center;">
+    <h1 class="featurette-heading fw-normal lh-1">Okayama Music SQUARE</h1>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+  </div>
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider" style="margin-top: 40px;">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">コンセプト</h2>
+      <h2 class="featurette-heading fw-normal lh-1">"誰でも気軽に入れるアカペラサークル"</h2>
+      <p class="lead">
+        <br> 岡山にはアカペラに興味がある未経験者がたくさんいたのにアカペラサークルがなかったという設立の経緯から 設立時にこのようなコンセプトを掲げました。<br> コンセプト通りに、未経験者・経験者問わず入会できます。<br> また県外のメンバーもたくさんおります。<br><br> アカペラを始めたい人達がとりあえず集まってくる「広場」のような場所のイメージから「SQUARE」という名前を付けました。
+      </p>
     </div>
-  </header>
+    <div class="col-md-5">
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image xlink:href="images\about_image_1.png" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </div>
 
-  <main class="px-3">
-    <h1>Cover your page.</h1>
-    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
-    </p>
-  </main>
+  <hr class="featurette-divider">
 
-  <footer class="mt-auto text-white-50">
-    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-  </footer>
-</div>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading fw-normal lh-1">基本方針</h2>
+      <p class="lead">
+        <br> SQUAREは出会いの場です。広場に集った人同士が出会うように、SQUAREで出会った人同士でバンドを組んで、基本的に自分たちで練習していくイメージです。<br><br> しかし、初めてアカペラの世界に足を踏み込む方も多くいるので、基礎的な部分の発信や導入段階の手助けを行う仕組みも作っている最中です。<br><br> そして自分たちがパフォーマンスをする場は、みんなで協力して自分たちで作っていくというのもSQUAREの重要な役割と考えています。<br><br>
+      </p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image xlink:href="images\about_image_2.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+      </svg>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+<!-- Three columns of text below the carousel -->
+  <div class="col-md-12" style="margin-top: 80px; text-align: center;">
+    <h1 class="featurette-heading fw-normal lh-1">主な活動内容</h1>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="images\about_image_4.jpg" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">定期活動会</h3>
+      <%= link_to show_1_about_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="images\about_image_5.jpg" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">Okayama Music SQUARE</h3>
+      <%= link_to show_2_about_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="images\about_image_6.jpg" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">スターターバンド・アシスト制度</h3>
+      <%= link_to show_3_about_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+  </div>
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
