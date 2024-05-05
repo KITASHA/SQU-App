@@ -1,7 +1,9 @@
-class AboutsController < ApplicationController
+class HomesController < ApplicationController
+  def index
+  end
 
   # SQUEAR概要説明ページ
-  def index
+  def about
   end
 
   # 定期活動会についての詳細ページ
@@ -13,6 +15,10 @@ class AboutsController < ApplicationController
   end
 
   # スターターバンド・アシスト制度についての詳細ページ
+  def swow_3
+  end
+
+  # 入会についての詳細ページ
   def swow_3
   end
 end

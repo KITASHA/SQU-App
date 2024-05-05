@@ -8,7 +8,7 @@
                 初心者、経験者、とにかくだれもが簡単にアカペラを
             </p>
             <p>
-                <%= link_to  abouts_path, class: "btn btn-primary my-2" do %>SQUAREをもっと知る
+                <%= link_to  about_home_path, class: "btn btn-primary my-2" do %>SQUAREをもっと知る
                 <% end %>
                 <% if user_signed_in? %>
                 <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-secondary my-2" %>
@@ -30,7 +30,7 @@
                         <p class="card-text">SQUAREについて</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <%= link_to  abouts_path, class: "btn btn-sm btn-outline-secondary" do %>
+                                <%= link_to about_home_path, class: "btn btn-sm btn-outline-secondary" do %>
                                 もっと見る
                                 <% end %>
                             </div>
@@ -45,7 +45,7 @@
                         <p class="card-text">Okayama Music SQUARE</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <%= link_to show_2_about_path, class: "btn btn-sm btn-outline-secondary" do %>
+                                <%= link_to show_2_home_path, class: "btn btn-sm btn-outline-secondary" do %>
                                 もっと見る &raquo;
                                 <% end %>
                             </div>
