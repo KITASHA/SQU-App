@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="XQ0T7Kfh18CLAMyTyNf5" name="ページ1">
-        <mxGraphModel dx="780" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1256" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -26,19 +26,19 @@
                     <mxGeometry x="600" y="420" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="定期活動会&lt;br&gt;参加者登録&lt;br&gt;ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="320" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="80" y="200" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="楽譜 リンク" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="80" y="80" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="参加者登録&lt;br&gt;ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="220" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="14" value="曲追加・削除&lt;br&gt;ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="80" y="320" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="バンド分け結果&lt;br&gt;表示ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="14" value="曲追加・削除&lt;br&gt;ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="80" y="420" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="バンド分け結果&lt;br&gt;表示ページ" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="520" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="5" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -84,8 +84,8 @@
                 </mxCell>
                 <mxCell id="33" value="" style="endArrow=none;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="240" y="450" as="sourcePoint"/>
-                        <mxPoint x="240" y="250" as="targetPoint"/>
+                        <mxPoint x="240" y="560" as="sourcePoint"/>
+                        <mxPoint x="240" y="360" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="34" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="10" edge="1">
@@ -112,7 +112,7 @@
                         <mxPoint x="200" y="350" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="40" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" parent="1" target="9" edge="1" source="2">
+                <mxCell id="40" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" parent="1" source="2" target="9" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="480" y="350" as="sourcePoint"/>
                         <mxPoint x="530" y="300" as="targetPoint"/>
