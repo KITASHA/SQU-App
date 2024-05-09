@@ -19,7 +19,7 @@ https://suq-app.onrender.com
 パスワード    ：fvji0301
 ### Basic認証（会員専用ページ）
 ID：square<br>
-PASS：1101
+PASS：1111
 
 ## ユーザー管理機能（新規登録、ログイン、情報変更）
 1. 「会員専用ページはこちら」をクリックします。
