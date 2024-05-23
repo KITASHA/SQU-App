@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row">
+    <!-- 左上に写真 -->
+    <div class="col-md-4">
+      <% if @band.image.attached? %>
+        <%= image_tag @band.image, class: "img-fluid", alt: @band.band_name %>
+      <% else %>
+        <%= image_tag "default_band_image.jpg", class: "img-fluid", alt: "Default Band Image" %>
+      <% end %>
+    </div>
+
+    <!-- 右側にバンド名、メンバー -->
+    <div class="col-md-8">
+      <% if @band.members.present? %>
+        <h4>メンバー</h4>
+        <ul>
+          <% @band.members.split(',').each do |member| %>
+            <li><%= member.strip %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No members listed.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <!-- 左下に説明文 -->
+    <div class="col-md-6">
+      <h3>説明</h3>
+      <p><%= @band.description %></p>
+    </div>
+
+    <!-- 右にリンク集 -->
+    <div class="col-md-6">
+      <h3>リンク集</h3>
+      <% if @band.link_name.present? && @band.link_url.present? %>
+        <ul>
+          <li>
+            <%= link_to @band.link_name, @band.link_url, target: "_blank", rel: "noopener noreferrer" %>
+          </li>
+        </ul>
+      <% else %>
+        <p>No links available.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 編集・削除ボタン -->
+  <% if user_signed_in? && current_user.id == @band.user_id %>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <%= link_to "編集", edit_band_path(@band), class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-6">
+        <%= link_to "削除", band_path(@band), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
+</div>
