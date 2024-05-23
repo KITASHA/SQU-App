@@ -9,18 +9,18 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <% @bands_1.each do |part, _| %>
+                            <% @groups_1.each do |part, _| %>
                                 <th><%= part %></th>
                             <% end %>
                         </tr>
                     </thead>
                     <tbody>
-                        <% if @bands_1.present? && @bands_1.any? %>
-                            <% max_band_count = @bands_1.values.map { |value| value&.size || 0 }.max %>
-                            <% max_band_count.times do |i| %>
+                        <% if @groups_1.present? && @groups_1.any? %>
+                            <% max_group_count = @groups_1.values.map { |value| value&.size || 0 }.max %>
+                            <% max_group_count.times do |i| %>
                                 <tr>
-                                    <td>Band<%= i+1 %></td>
-                                    <% @bands_1.each do |_, members| %>
+                                    <td>group<%= i+1 %></td>
+                                    <% @groups_1.each do |_, members| %>
                                         <td><%= members[i] if members.present? && members[i] %></td>
                                     <% end %>
                                 </tr>
@@ -38,18 +38,18 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <% @bands_2.each do |part, _| %>
+                            <% @groups_2.each do |part, _| %>
                                 <th><%= part %></th>
                             <% end %>
                         </tr>
                     </thead>
                     <tbody>
-                        <% if @bands_2.present? && @bands_2.any? %>
-                            <% max_band_count = @bands_2.values.map { |value| value&.size || 0 }.max %>
-                            <% max_band_count.times do |i| %>
+                        <% if @groups_2.present? && @groups_2.any? %>
+                            <% max_group_count = @groups_2.values.map { |value| value&.size || 0 }.max %>
+                            <% max_group_count.times do |i| %>
                                 <tr>
-                                    <td>Band<%= i+1 %></td>
-                                    <% @bands_2.each do |_, members| %>
+                                    <td>group<%= i+1 %></td>
+                                    <% @groups_2.each do |_, members| %>
                                         <td><%= members[i] if members.present? && members[i] %></td>
                                     <% end %>
                                 </tr>

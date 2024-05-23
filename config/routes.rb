@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :songs, only: [:new,:create,:destroy]
   resources :parts 
   resources :bands
+  resources :groups
 
   get '/homes/about', to: 'homes#about', as: 'about_home'
   get '/homes/show_1', to: 'homes#show_1', as: 'show_1_home'
