@@ -18,7 +18,6 @@ class BandsController < ApplicationController
       render :new
     end
   end
-  
 
   def show
   end
@@ -36,7 +35,7 @@ class BandsController < ApplicationController
 
   def destroy
     @band.destroy
-    redirect_to bands_path, notice: 'Band was successfully deleted.'
+    redirect_to bands_path
   end
 
   private
