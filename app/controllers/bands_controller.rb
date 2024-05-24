@@ -13,7 +13,7 @@ class BandsController < ApplicationController
     @band = Band.new(band_params)
     @band.members = params[:band][:members].split(',').map(&:strip)
     if @band.save
-      redirect_to @band, notice: 'Band was successfully created.'
+      redirect_to @band
     else
       render :new
     end
@@ -22,16 +22,16 @@ class BandsController < ApplicationController
   def show
   end
 
-#   def edit
-#   end
+  def edit
+  end
 
-#   def update
-#     if @band.update(band_params)
-#       redirect_to bands_path, notice: 'Band was successfully updated.'
-#     else
-#       render :edit
-#     end
-#   end
+  def update
+    if @band.update(band_params)
+      redirect_to @band
+    else
+      render :edit
+    end
+  end
 
 #   def destroy
 #     @band.destroy
@@ -45,7 +45,9 @@ class BandsController < ApplicationController
 
   private
   def band_params
-    params.require(:band).permit(:band_name, :description, :link_name, :link_url, :image).merge(user_id: current_user.id)
+    params.require(:band).permit(
+      :band_name, :member_1, :member_2, :member_3, :member_4, :member_5, :member_6, :member_7, :member_8, :member_9,
+      :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :link_name_4, :link_url_4, :image)
   end
   
 end
