@@ -10,14 +10,15 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = Band.new(band_params)
-    @band.members = params[:band][:members].split(',').map(&:strip)
+    @band = current_user.bands.build(band_params)
+
     if @band.save
-      redirect_to @band
+      redirect_to @band, notice: 'バンドが登録されました。'
     else
       render :new
     end
   end
+  
 
   def show
   end
@@ -33,10 +34,10 @@ class BandsController < ApplicationController
     end
   end
 
-#   def destroy
-#     @band.destroy
-#     redirect_to bands_path, notice: 'Band was successfully deleted.'
-#   end
+  def destroy
+    @band.destroy
+    redirect_to bands_path, notice: 'Band was successfully deleted.'
+  end
 
   private
   def find_band

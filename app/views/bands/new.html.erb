@@ -14,9 +14,7 @@
         </div>
         
         <!-- メンバー入力欄 -->
-        <div class="mb-3">
-          <p>メンバー</p>
-        </div>
+        <p>メンバー</p>
         <div id="members_container">
           <div class="row mb-3">
             <% (1..3).each do |i| %>
@@ -71,13 +69,14 @@
         
         <!-- 登録ボタン -->
         <div class="d-flex justify-content-end">
+          <%= link_to "戻る", bands_path, class: "btn btn-secondary btn-lg me-3" %>
           <%= form.submit '登録', class: "btn btn-primary btn-lg" %>
         </div>
-      
       <% end %>
     </div>
   </div>
 </div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

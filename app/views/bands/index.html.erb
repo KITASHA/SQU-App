@@ -4,11 +4,11 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <% @bands.each do |band| %>
           <div class="col">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm" style="height: 100%; display: flex; flex-direction: column;">
               <%= link_to band_path(band.id) do %>
-                <%= image_tag band.image, class: "card-img-top", alt: "#{band.band_name} image" %>
+                <%= image_tag band.image, class: "card-img-top", style: "height: 200px; object-fit: cover;", alt: "#{band.band_name} image" %>
               <% end %>
-              <div class="card-body">
+              <div class="card-body" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                 <h5 class="card-title">
                   <%= link_to band.band_name, band_path(band.id), class: "stretched-link" %>
                 </h5>
