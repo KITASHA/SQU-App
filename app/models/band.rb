@@ -3,4 +3,5 @@ class Band < ApplicationRecord
   belongs_to :user
   validates :band_name, presence: true
   validates :description, presence: true
+  validates :image, presence: true
 end
