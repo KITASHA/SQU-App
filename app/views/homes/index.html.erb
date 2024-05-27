@@ -19,13 +19,12 @@
         </div>
     </div>
 </section>
-
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm">
-                    <img src="images/image_1.jpg" alt="集合写真" style="width: 100%; height: 225px;">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="images/about_image_1.png" alt="ロゴ" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover; object-position: center;">
                     <div class="card-body">
                         <p class="card-text">SQUAREについて</p>
                         <div class="d-flex justify-content-between align-items-center">
@@ -56,12 +55,56 @@
 
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="images/image_4.png" alt="ロゴ" style="width: 100%; height: 225px;">
+                    <img src="images/image_4.jpg" alt="イメージ" style="width: 100%; height: 225px;">
                     <div class="card-body">
                         <p class="card-text">活動の様子を動画で見る</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="https://www.youtube.com/@square5877" class="btn btn-sm btn-outline-secondary" role="button">もっと見る</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="images/image_5.jpg" alt="イメージ" style="width: 100%; height: 225px;">
+                    <div class="card-body">
+                        <p class="card-text">バンド紹介</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <%= link_to "こちらから", bands_path, class: "btn btn-sm btn-outline-secondary" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+                    <div class="card-body">
+                        <p class="card-text">Coming Soon</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
+                    <div class="card-body">
+                        <p class="card-text">Coming Soon</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                             </div>
                         </div>
                     </div>
@@ -105,32 +148,6 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <%= link_to "こちらから", edit_user_registration_path, class: "btn btn-sm btn-outline-secondary" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                        <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-                    <div class="card-body">
-                        <p class="card-text">Coming Soon</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></svg>
-                    <div class="card-body">
-                        <p class="card-text">Coming Soon</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <%= link_to "こちらから", bands_path, class: "btn btn-sm btn-outline-secondary" %>
                             </div>
                         </div>
                     </div>
