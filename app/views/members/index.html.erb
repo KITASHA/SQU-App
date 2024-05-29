@@ -1,0 +1,79 @@
+<div class="container marketing">
+  <div class="col-md-12" style="margin-top: 80px; text-align: center;">
+    <h1 class="featurette-heading fw-normal lh-1">入会について</h1>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+  </div>
+
+  <hr class="featurette-divider" style="margin-top: 40px;">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">入会までの流れ</h2>
+      <p class="lead"><br>
+        1.説明<br>
+        2.<br>
+        </p>
+    </div>
+
+    <div class="col-md-5">
+      <h2 class="featurette-heading fw-normal lh-1">体験・見学可能日</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">日付</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @available_dates.each do |date| %>
+            <tr>
+              <td><%= date.available_on %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to '編集する', edit_available_dates_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="col-md-12" style="margin-top: 80px; text-align: center;">
+    <h1 class="featurette-heading fw-normal lh-1">入会前にこちらの資料をご確認ください</h1>
+  </div>
+  <div class="row" style="margin-top: 40px;">
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="/images/about_image_4.jpg" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">SQUAREについて</h3>
+      <%= link_to document_home_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="/images/about_image_5.jpg" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">サークル規約</h3>
+      <%= link_to show_2_home_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>Placeholder</title>
+        <image href="/images/about_image_1.png" width="100%" height="100%" />
+      </svg>
+      <h3 class="fw-normal">感染対策ガイドライン</h3>
+      <%= link_to about_home_path, class: "btn btn-secondary" do %>
+        詳しく知る &raquo;
+      <% end %>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+</div>

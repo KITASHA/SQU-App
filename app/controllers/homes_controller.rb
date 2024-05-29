@@ -21,4 +21,16 @@ class HomesController < ApplicationController
   # 入会についての詳細ページ
   def swow_3
   end
+
+  # サークル説明資料PDF表示
+  def document
+  end
+
+  # サークル規約PDF表示
+  def terms
+  end
+
+  # 感染対策ガイドラインPDF表示
+  def guideline
+  end
 end
