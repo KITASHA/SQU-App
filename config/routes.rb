@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :parts 
   resources :bands
   resources :groups
-  resources :members
-  get '/homes/list', to: 'homes#list', as: 'list_home'
+  resources :members, only: [:index,:new,:create]
+  resources :events
   get '/homes/about', to: 'homes#about', as: 'about_home'
   get '/homes/show_1', to: 'homes#show_1', as: 'show_1_home'
   get '/homes/show_2', to: 'homes#show_2', as: 'show_2_home'

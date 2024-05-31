@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
-
   def index
+    @events = Event.all
   end
 
   def new
@@ -9,16 +9,6 @@ class MembersController < ApplicationController
   def create
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def list
   end
-
 end
