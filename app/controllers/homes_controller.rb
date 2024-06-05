@@ -30,7 +30,4 @@ class HomesController < ApplicationController
   def terms
   end
 
-  # 感染対策ガイドラインPDF表示
-  def guideline
-  end
 end

@@ -26,10 +26,6 @@ class EventsController < ApplicationController
 
   def destroy
   end
-
-  def list
-  end
-
   
   private
 
