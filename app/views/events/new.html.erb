@@ -1,8 +1,7 @@
 <%= form_with(model: @event, local: true) do |form| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
+      <h2><%= pluralize(@event.errors.count, "error") %>がこのイベントの保存を妨げています:</h2>
       <ul>
         <% @event.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -12,17 +11,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :date %>
+    <%= form.label :date, "日付" %>
     <%= form.date_field :date %>
   </div>
 
   <div class="field">
-    <%= form.label :start_time %>
+    <%= form.label :start_time, "開始時間" %>
     <%= form.time_field :start_time %>
   </div>
 
   <div class="field">
-    <%= form.label :location %>
+    <%= form.label :start_time, "終了時間" %>
+    <%= form.time_field :finish_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location, "場所" %>
     <%= form.text_field :location %>
   </div>
 

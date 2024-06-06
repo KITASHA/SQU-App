@@ -67,8 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_31_051113) do
 
   create_table "events", charset: "utf8", force: :cascade do |t|
     t.date "date", null: false
-    t.time "start_time"
-    t.string "location"
+    t.time "start_time", null: false
+    t.time "finish_time", null: false
+    t.string "location", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

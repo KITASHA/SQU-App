@@ -8,7 +8,7 @@
   <hr class="featurette-divider" style="margin-top: 40px;">
 
   <div class="row featurette">
-    <div class="col-md-7">
+    <div class="col-md-10">
       <h2 class="featurette-heading fw-normal lh-1">入会までの流れ</h2>
       <p class="lead"><br>
         1.下のリンクから「サークル資料」と「サークル規約」を確認。<br>
@@ -18,34 +18,41 @@
         
         </p>
     </div>
-<div class="col-md-5">
+    
+  <hr class="featurette-divider" style="margin-top: 40px;">
+
+<div class="col-md-10">
   <h2 class="featurette-heading fw-normal lh-1">体験・見学可能日</h2>
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">日付</th>
-        <th scope="col">開始時間</th>
+        <th scope="col">開始</th>
+        <th scope="col">終了</th>
         <th scope="col">場所</th>
-        <th scope="col">操作</th>
       </tr>
     </thead>
     <tbody>
       <% @events.each do |event| %>
         <tr>
           <td><%= event.date %></td>
-          <td><%= event.start_time.strftime("%H:%M:%S") %></td> <!-- 時間をフォーマット -->
+          <td><%= event.start_time.present? ? event.start_time.strftime("%H:%M") : "時間未設定" %></td>
+          <td><%= event.finish_time.present? ? event.finish_time.strftime("%H:%M") : "時間未設定" %></td>
           <td><%= event.location %></td>
-          <td>
-            <%= link_to '編集', edit_event_path(event), class: 'btn btn-primary' %>
-          </td>
+          <td><%= link_to '削除', event_path(event.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <div>
+      <%= link_to '登録', new_event_path, class: 'btn btn-primary' %>
+</div>
+
 </div>
 
 
-  <hr class="featurette-divider">
+  <hr class="featurette-divider" style="margin-top: 40px;">
+
 
   <div class="col-md-8" style="margin-top: 80px; text-align: center;">
     <h1 class="featurette-heading fw-normal lh-1">入会前にこちらの資料をご確認ください</h1>
