@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :basic_auth
+
 
   def index
     # すべてのPartレコードを取得
@@ -74,4 +76,11 @@ class GroupsController < ApplicationController
 
     groups
   end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
+  end
+
 end

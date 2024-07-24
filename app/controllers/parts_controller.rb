@@ -1,4 +1,5 @@
 class PartsController < ApplicationController
+  before_action :basic_auth
   before_action :set_songs, only: [:index, :new, :create,:edit]
   before_action :set_part, only: [:edit, :update, :destroy]
   def index
@@ -52,4 +53,11 @@ class PartsController < ApplicationController
   def part_params
     params.require(:part).permit(:nickname, :song_part_id_1, :song_part_id_2).merge(user_id: current_user.id)
   end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
+  end
+
 end

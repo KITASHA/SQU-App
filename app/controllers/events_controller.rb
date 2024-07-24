@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :basic_auth, only: [:new, :create, :destroy]
+  before_action :set_event, only: [:destroy]
 
   def index
     @events = Event.all
@@ -33,4 +34,11 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:date, :start_time, :finish_time, :location)
   end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
+  end
+  
 end

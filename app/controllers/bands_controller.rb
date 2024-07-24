@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_band, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,5 +50,13 @@ class BandsController < ApplicationController
       :band_name, :member_1, :member_2, :member_3, :member_4, :member_5, :member_6, :member_7, :member_8, :member_9,
       :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :link_name_4, :link_url_4, :image)
   end
+
+  
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
+  end
+  
   
 end
