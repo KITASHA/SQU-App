@@ -37,7 +37,7 @@
     <tbody>
       <% @events.each do |event| %>
         <tr>
-          <td><%= event.date.strftime("%Y年%m月%d日") %></td>
+          <td><%= event.date.strftime("%m/%d") %></td>
           <td><%= event.start_time.present? ? event.start_time.strftime("%H:%M") : "時間未設定" %></td>
           <td><%= event.finish_time.present? ? event.finish_time.strftime("%H:%M") : "時間未設定" %></td>
           <td><%= event.location %></td>
@@ -68,11 +68,12 @@
   <a href="https://drive.google.com/drive/folders/1kGhrDxyw8riVsYW160JzmnE6qzg6LgPx?usp=sharing" class="btn btn-primary btn-lg" role="button">確認資料一覧 &raquo;</a>
 </div>
 
-    <div class="col-lg-6  ">
-      <%= link_to new_member_path, class: "btn btn-primary btn-lg" do %>
-        体験・見学申し込みフォーム &raquo;
-      <% end %>
-    </div>
+    <div class="col-lg-6">
+  <a href="https://forms.gle/mYNAa8hgcQGmEATr6" class="btn btn-primary btn-lg">
+    体験・見学申し込みフォーム &raquo;
+  </a>
+</div>
+
   </div>
 
   <hr class="featurette-divider" style="margin-top: 40px;">
