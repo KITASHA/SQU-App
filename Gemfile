@@ -90,5 +90,5 @@ gem 'image_processing', '~> 1.2'
 
 gem 'httparty'
 gem 'dotenv-rails' 
-
+gem 'openai-ruby'
 

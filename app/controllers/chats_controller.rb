@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
   end
 
   def create
-    client = OpenAIClient.new
+    client = OpenAiClient.new
     response = client.generate_response(params[:prompt])
 
     # レスポンスをログに記録（デバッグ用）

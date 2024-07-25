@@ -6,4 +6,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "reset"
-import "screenshot"
+import "chat"
