@@ -1,6 +1,4 @@
 class ChatsController < ApplicationController
-  require_relative '../services/open_ai_client'
-
   def index
   end
 
