@@ -1,0 +1,46 @@
+<h1>Chat with OpenAI</h1>
+
+<form id="chat-form">
+  <textarea id="prompt" placeholder="Type your message here..."></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+  document.getElementById('chat-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const prompt = document.getElementById('prompt').value;
+
+    fetch('/chat/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      },
+      body: JSON.stringify({ prompt: prompt })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('OpenAI Response:', data); // デバッグ用
+      if (data.response && data.response.choices && data.response.choices.length > 0) {
+        document.getElementById('response').innerText = data.response.choices[0].message.content;
+      } else if (data.error) {
+        document.getElementById('response').innerText = `Error: ${data.error.message}`;
+      } else {
+        throw new Error('Invalid response format');
+      }
+    })
+    .catch(error => {
+      document.getElementById('response').innerText = `Error: ${error.message}`;
+    });
+  });
+</script>
+
+
