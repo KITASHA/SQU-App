@@ -89,6 +89,6 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem 'httparty'
-gem 'dotenv-rails' 
-gem 'openai-ruby'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'openai'
 
