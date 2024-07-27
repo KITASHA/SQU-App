@@ -10,8 +10,8 @@ module SUQApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Add custom directories to the autoload paths
-    config.autoload_paths += %W(#{config.root}/app/services)
+    # lib ディレクトリを autoload_path に追加
+    config.autoload_paths << Rails.root.join('lib')
 
     # Other configuration settings can go here
     # config.active_storage.variant_processor = :mini_magick
