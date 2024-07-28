@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+  before_action :basic_auth
+
   def create
     client = OpenAiClient.new
 
@@ -35,6 +37,12 @@ class ChatsController < ApplicationController
     magnitude1 = Math.sqrt(vec1.map { |x| x**2 }.reduce(:+))
     magnitude2 = Math.sqrt(vec2.map { |x| x**2 }.reduce(:+))
     dot_product / (magnitude1 * magnitude2)
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
   end
 end
 
