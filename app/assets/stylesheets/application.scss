@@ -48,7 +48,7 @@ object-fit: cover;
 }
 
 /* スマホ用のスタイル */
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   .text-body-secondary {
     font-size: 15px;
   }
