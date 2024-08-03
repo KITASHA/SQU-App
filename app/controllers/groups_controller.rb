@@ -43,13 +43,13 @@ class GroupsController < ApplicationController
 
     # メンバーが不足しているグループを補充
     groups.each do |part, members|
-      members.shuffle! # メンバーをランダムに並び替える
-      while members.size < max_group_count
-        members << members[members.size % members.size]
+      members.shuffle!
+      additional_members = members.cycle.take(max_group_count - members.size).shuffle
+      
+      additional_members.each do |member|
+        members << member
       end
     end
-
-    groups
   end
 
   def prepare_groups_2(parts, song_part_names)
@@ -68,13 +68,13 @@ class GroupsController < ApplicationController
 
     # メンバーが不足しているグループを補充
     groups.each do |part, members|
-      members.shuffle! # メンバーをランダムに並び替える
-      while members.size < max_group_count
-        members << members[members.size % members.size]
+      members.shuffle!
+      additional_members = members.cycle.take(max_group_count - members.size).shuffle
+      
+      additional_members.each do |member|
+        members << member
       end
     end
-
-    groups
   end
 
   def basic_auth
