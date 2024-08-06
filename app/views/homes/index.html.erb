@@ -129,10 +129,12 @@
                 <div class="card shadow-sm">
                     <img src="images/image_8.jpg" alt="楽譜" style="width: 100%; height: 225px;">
                     <div class="card-body">
-                        <p class="card-text">定期活動会楽譜</p>
+                        <p class="card-text">出演情報</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="<%= ENV['GOOGLE_DRIVE_SCORE'] %>" class="btn btn-sm btn-outline-secondary" role="button">こちらから</a>
+                                <%= link_to gigs_path, class: "btn btn-sm btn-outline-secondary" do %>
+                                こちらから
+                                <% end %>
                             </div>
                         </div>
                     </div>
