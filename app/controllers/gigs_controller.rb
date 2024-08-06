@@ -6,38 +6,38 @@ class GigsController < ApplicationController
     @gigs = Gig.all
   end
 
-  # def new
-  #   @band = Band.new
-  # end
+  def new
+    @gig = Gig.new
+  end
 
-  # def create
-  #   @band = current_user.bands.build(band_params)
+  def create
+    @gig = Gig.new(gig_params)
 
-  #   if @band.save
-  #     redirect_to @band, notice: 'バンドが登録されました。'
-  #   else
-  #     render :new
-  #   end
-  # end
+    if @gig.save
+      redirect_to @gig
+    else
+      render :new
+    end
+  end
 
-  # def show
-  # end
+  def show
+  end
 
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  #   if @band.update(band_params)
-  #     redirect_to @band
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @gig.update(gig_params)
+      redirect_to @gig
+    else
+      render :edit
+    end
+  end
 
-  # def destroy
-  #   @band.destroy
-  #   redirect_to bands_path
-  # end
+  def destroy
+    @gig.destroy
+    redirect_to gigs_path
+  end
 
   private
   def find_gig
@@ -45,11 +45,9 @@ class GigsController < ApplicationController
   end
 
   private
-  # def band_params
-  #   params.require(:band).permit(
-  #     :band_name, :member_1, :member_2, :member_3, :member_4, :member_5, :member_6, :member_7, :member_8, :member_9,
-  #     :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :link_name_4, :link_url_4, :image)
-  # end
+  def gig_params
+    params.require(:gig).permit(:gig_name, :description, :link_name, :link_url, :image)
+  end
 
   
   def basic_auth
