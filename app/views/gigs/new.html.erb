@@ -12,7 +12,18 @@
           <%= form.label :gig_name, 'イベント名' %>
           <%= form.text_field :gig_name, class: "form-control", required: true %>
         </div>
-        
+<!-- 出演バンド -->
+        <div class="mb-3">
+          <%= form.label :band_ids, '出演バンド' %>
+          <div class="form-check">
+            <% @bands.each do |band| %>
+              <%= check_box_tag 'gig[band_ids][]', band.id, @gig.band_ids.include?(band.id), id: "band_#{band.id}", class: "form-check-input" %>
+              <%= label_tag "band_#{band.id}", band.band_name, class: "form-check-label" %><br>
+            <% end %>
+          </div>
+        </div>
+
+
         <!-- 説明 -->
         <div class="mb-3">
           <%= form.label :description, 'イベント概要' %>

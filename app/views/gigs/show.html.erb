@@ -1,0 +1,47 @@
+<!-- app/views/gigs/show.html.erb -->
+<div class="container mt-5">
+  <div class="text-center">
+    <h1 class="mb-4"><%= @gig.gig_name %></h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <!-- 出演バンド -->
+      <div class="mb-3">
+        <h4>出演バンド:</h4>
+        <ul>
+          <% @gig.bands.each do |band| %>
+            <li><%= band.band_name %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- 説明 -->
+      <div class="mb-3">
+        <h4>出演紹介:</h4>
+        <p><%= @gig.description %></p>
+      </div>
+
+      <!-- リンク -->
+      <% if @gig.link_name.present? && @gig.link_url.present? %>
+        <div class="mb-3">
+          <h4>リンク:</h4>
+          <a href="<%= @gig.link_url %>" target="_blank"><%= @gig.link_name %></a>
+        </div>
+      <% end %>
+
+      <!-- 画像 -->
+      <% if @gig.image.attached? %>
+        <div class="mb-3">
+          <h4>画像:</h4>
+          <%= image_tag @gig.image %>
+        </div>
+      <% end %>
+
+      <!-- 戻るボタン -->
+      <div class="d-flex justify-content-end">
+        <%= link_to "戻る", gigs_path, class: "btn btn-secondary btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>

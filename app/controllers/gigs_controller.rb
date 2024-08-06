@@ -1,6 +1,8 @@
 class GigsController < ApplicationController
-  before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
+  before_action :basic_auth
+  #, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_gig, only: [:show, :edit, :update, :destroy]
+  before_action :load_bands, only: [:new, :edit]
 
   def index
     @gigs = Gig.all
@@ -12,6 +14,7 @@ class GigsController < ApplicationController
 
   def create
     @gig = Gig.new(gig_params)
+    @gig.user_id = current_user.id 
 
     if @gig.save
       redirect_to @gig
@@ -44,9 +47,12 @@ class GigsController < ApplicationController
     @gig = Gig.find(params[:id])
   end
 
-  private
   def gig_params
-    params.require(:gig).permit(:gig_name, :description, :link_name, :link_url, :image)
+    params.require(:gig).permit(:gig_name, :description, :link_name, :link_url, :image, band_ids: [])
+  end
+
+  def load_bands
+    @bands = Band.all
   end
 
   
