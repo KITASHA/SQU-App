@@ -1,2 +1,16 @@
-<h1>Gigs#index</h1>
-<p>Find me in app/views/gigs/index.html.erb</p>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <% if @bands.present? %>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <%= render partial: "gig", collection: @gigs %>
+      </div>
+    <% else %>
+      <p>No gigs available.</p>
+    <% end %>
+    <% if user_signed_in? %>
+      <div class="d-flex justify-content-end mt-4">
+        <%= link_to "追加", new_gig_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
