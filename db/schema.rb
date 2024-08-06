@@ -92,6 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_06_185615) do
 
   create_table "gigs", charset: "utf8", force: :cascade do |t|
     t.string "gig_name", limit: 30, null: false
+    t.date "date", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.text "description", null: false
     t.string "link_name"
     t.string "link_url"

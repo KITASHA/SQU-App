@@ -12,7 +12,8 @@
           <%= form.label :gig_name, 'イベント名' %>
           <%= form.text_field :gig_name, class: "form-control", required: true %>
         </div>
-<!-- 出演バンド -->
+
+        <!-- 出演バンド -->
         <div class="mb-3">
           <%= form.label :band_ids, '出演バンド' %>
           <div class="form-check">
@@ -23,7 +24,24 @@
           </div>
         </div>
 
+        <!-- 日付 -->
+        <div class="mb-3">
+          <%= form.label :date, 'イベント日付' %>
+          <%= form.date_field :date, class: "form-control", required: true %>
+        </div>
 
+        <!-- 開始時間 -->
+        <div class="mb-3">
+          <%= form.label :start_time, '開始時間' %>
+          <%= form.time_field :start_time, class: "form-control", required: true %>
+        </div>
+
+        <!-- 終了時間 -->
+        <div class="mb-3">
+          <%= form.label :end_time, '終了時間' %>
+          <%= form.time_field :end_time, class: "form-control", required: true %>
+        </div>
+        
         <!-- 説明 -->
         <div class="mb-3">
           <%= form.label :description, 'イベント概要' %>

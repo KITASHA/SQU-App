@@ -5,7 +5,7 @@ class GigsController < ApplicationController
   before_action :load_bands, only: [:new, :edit]
 
   def index
-    @gigs = Gig.all
+    @gigs = Gig.includes(:bands).order(date: :asc)
   end
 
   def new
@@ -48,7 +48,7 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-    params.require(:gig).permit(:gig_name, :description, :link_name, :link_url, :image, band_ids: [])
+    params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :description, :link_name, :link_url, :image, band_ids: [])
   end
 
   def load_bands
