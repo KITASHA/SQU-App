@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups, only: :index
   resources :members, only: [:index,:new,:create,:destroy]
   resources :events, only: [:index,:new,:create,:destroy]
+  resources :gigs
   get 'chats', to: 'chats#index'
   post 'chat/create', to: 'chats#create'
   get '/homes/about', to: 'homes#about', as: 'about_home'
