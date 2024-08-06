@@ -4,4 +4,6 @@ class Band < ApplicationRecord
   validates :band_name, presence: true
   validates :description, presence: true
   validates :image, presence: true
+  has_many :gig_bands
+  has_many :gigs, through: :gig_bands
 end

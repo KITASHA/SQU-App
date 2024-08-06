@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_27_040405) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_06_185615) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -81,6 +81,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_27_040405) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gig_bands", charset: "utf8", force: :cascade do |t|
+    t.bigint "gig_id", null: false
+    t.bigint "band_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_gig_bands_on_band_id"
+    t.index ["gig_id"], name: "index_gig_bands_on_gig_id"
+  end
+
+  create_table "gigs", charset: "utf8", force: :cascade do |t|
+    t.string "gig_name", limit: 30, null: false
+    t.text "description", null: false
+    t.string "link_name"
+    t.string "link_url"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_gigs_on_user_id"
+  end
+
   create_table "parts", charset: "utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.integer "song_part_id_1"
@@ -113,5 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_27_040405) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bands", "users"
+  add_foreign_key "gig_bands", "bands"
+  add_foreign_key "gig_bands", "gigs"
+  add_foreign_key "gigs", "users"
   add_foreign_key "parts", "users"
 end
