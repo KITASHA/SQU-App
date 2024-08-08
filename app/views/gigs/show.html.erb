@@ -7,7 +7,7 @@
     <div class="col-lg-8 col-md-10 col-sm-12">
       <!-- 出演バンド -->
       <div class="mb-3">
-        <h4>出演バンド:</h4>
+        <h4>出演バンド</h4>
         <ul>
           <% @gig.bands.each do |band| %>
             <li>
@@ -19,7 +19,7 @@
 
       <!-- 日付と時間 -->
       <div class="mb-3">
-        <h4>イベント日付と時間:</h4>
+        <h4>開催日時</h4>
         <p>
           <%= @gig.date.strftime("%Y年%m月%d日") %> 
           <%= @gig.start_time.strftime("%H:%M") %> - 
@@ -29,14 +29,14 @@
 
       <!-- 説明 -->
       <div class="mb-3">
-        <h4>出演紹介:</h4>
+        <h4>イベント概要</h4>
         <p><%= @gig.description %></p>
       </div>
 
       <!-- リンク -->
       <% if @gig.link_name.present? && @gig.link_url.present? %>
         <div class="mb-3">
-          <h4>リンク:</h4>
+          <h4>リンク</h4>
           <a href="<%= @gig.link_url %>" target="_blank"><%= @gig.link_name %></a>
         </div>
       <% end %>
@@ -44,14 +44,24 @@
       <!-- 画像 -->
       <% if @gig.image.attached? %>
         <div class="mb-3">
-          <h4>画像:</h4>
+          <h4>フライヤー</h4>
           <%= image_tag @gig.image, class: "img-fluid" %>
         </div>
       <% end %>
 
-      <!-- 戻るボタン -->
-      <div class="d-flex justify-content-end">
-        <%= link_to "戻る", gigs_path, class: "btn btn-secondary btn-lg" %>
+      <!-- 編集・削除ボタン -->
+      <div class="row justify-content-end mt-4">
+        <div class="col-md-6">
+          <div class="d-flex justify-content-end">
+            <div>
+              <%= link_to "一覧に戻る", gigs_path, class: "btn btn-primary mr-2" %>
+              <% if user_signed_in? && current_user.id == @gig.user_id %>
+                <%= link_to "編集", edit_gig_path(@gig), class: "btn btn-primary mr-2" %>
+                <%= link_to '削除', gig_path(@gig), data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
