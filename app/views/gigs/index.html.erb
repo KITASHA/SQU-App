@@ -1,6 +1,9 @@
-<!-- app/views/gigs/index.html.erb -->
 <div class="album py-5 bg-light">
   <div class="container">
+    <h1 class="featurette-heading fw-normal lh-1">出演イベント一覧</h1>
+    <p class="lead mb-4">
+      SQUARE所属バンドが出演するイベントの一覧です。随時更新しております。<br>
+      出演依頼もお待ちしております。</p>
     <% if @gigs.present? %>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <%= render partial: "gig", collection: @gigs, as: :gig %>
@@ -8,6 +11,7 @@
     <% else %>
       <p>No gigs available.</p>
     <% end %>
+
     <% if user_signed_in? %>
       <div class="d-flex justify-content-end mt-4">
         <%= link_to "追加", new_gig_path, class: "btn btn-primary" %>

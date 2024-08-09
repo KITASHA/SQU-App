@@ -21,9 +21,9 @@
       <div class="mb-3">
         <h4>開催日時</h4>
         <p>
-          <%= @gig.date.strftime("%Y年%m月%d日") %> 
-          <%= @gig.start_time.strftime("%H:%M") %> - 
-          <%= @gig.end_time.strftime("%H:%M") %>
+          <%= @gig.date.strftime("%Y年%m月%d日") %> <br>
+          <%= @gig.start_time.strftime("%H時%M分") %> - 
+          <%= @gig.end_time.strftime("%H時%M分") %>
         </p>
       </div>
 

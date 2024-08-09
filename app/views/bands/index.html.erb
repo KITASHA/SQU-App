@@ -1,5 +1,7 @@
 <div class="album py-5 bg-light">
   <div class="container">
+    <h1 class="featurette-heading fw-normal lh-1">バンド紹介</h1>
+    <p class="lead mb-4">SQUARE所属バンドの一覧です。</p>
     <% if @bands.present? %>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <%= render partial: "band", collection: @bands %>
@@ -12,5 +14,10 @@
         <%= link_to "バンド登録", new_band_path, class: "btn btn-primary" %>
       </div>
     <% end %>
+    <div class="mb-4" style="margin-top: 50px;">
+      <%= link_to gigs_path, class: "btn btn-sm btn-outline-secondary" do %>
+        出演イベント一覧はこちらから
+      <% end %>
+    </div>
   </div>
 </div>
