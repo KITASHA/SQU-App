@@ -35,6 +35,7 @@ class BandsController < ApplicationController
   end
 
   def destroy
+    @band.gig_bands.destroy_all
     @band.destroy
     redirect_to bands_path
   end
