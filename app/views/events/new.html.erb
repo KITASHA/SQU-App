@@ -1,31 +1,38 @@
-<%= form_with(model: @event, local: true, html: { class: 'needs-validation mx-4', novalidate: true }) do |form| %>
-  <div class="form-group" style="margin-top: 40px;">
-    <%= form.label :date, "日付", class: 'form-label' %>
-    <%= form.date_field :date, class: 'form-control', required: true %>
-    <div class="invalid-feedback">日付を入力してください。</div>
-  </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-10 col-sm-12">
+      <%= form_with(model: @event, local: true, html: { novalidate: true }) do |form| %>
+        
+        <div class="form-group mb-4">
+          <%= form.label :date, "日付", class: 'form-label' %>
+          <%= form.date_field :date, class: 'form-control', required: true %>
+          <div class="invalid-feedback">日付を入力してください。</div>
+        </div>
 
-  <div class="form-group" style="margin-top: 10px;">
-    <%= form.label :start_time, "開始時間", class: 'form-label' %>
-    <%= form.time_field :start_time, class: 'form-control', required: true %>
-    <div class="invalid-feedback">開始時間を入力してください。</div>
-  </div>
+        <div class="form-group mb-3">
+          <%= form.label :start_time, "開始時間", class: 'form-label' %>
+          <%= form.time_field :start_time, class: 'form-control', required: true %>
+          <div class="invalid-feedback">開始時間を入力してください。</div>
+        </div>
 
-  <div class="form-group" style="margin-top: 10px;">
-    <%= form.label :finish_time, "終了時間", class: 'form-label' %>
-    <%= form.time_field :finish_time, class: 'form-control', required: true %>
-    <div class="invalid-feedback">終了時間を入力してください。</div>
-  </div>
+        <div class="form-group mb-3">
+          <%= form.label :finish_time, "終了時間", class: 'form-label' %>
+          <%= form.time_field :finish_time, class: 'form-control', required: true %>
+          <div class="invalid-feedback">終了時間を入力してください。</div>
+        </div>
 
-  <div class="form-group"style="margin-top: 10px;">
-    <%= form.label :location, "場所", class: 'form-label' %>
-    <%= form.text_field :location, class: 'form-control', required: true %>
-    <div class="invalid-feedback">場所を入力してください。</div>
-  </div>
+        <div class="form-group mb-4">
+          <%= form.label :location, "場所", class: 'form-label' %>
+          <%= form.text_field :location, class: 'form-control', required: true %>
+          <div class="invalid-feedback">場所を入力してください。</div>
+        </div>
 
-  <div class="form-group" style="margin-top: 20px;">
-    <%= link_to "戻る", events_path, class: "btn btn-secondary  me-3" %>
-    <%= form.submit "保存",  class: "btn btn-primary " %>
-  </div>
+        <div class="form-group d-flex justify-content-end">
+          <%= link_to "戻る", events_path, class: "btn btn-secondary me-3" %>
+          <%= form.submit "保存", class: "btn btn-primary" %>
+        </div>
 
-<% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
