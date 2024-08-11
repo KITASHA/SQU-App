@@ -1,6 +1,5 @@
 class GigsController < ApplicationController
-  before_action :basic_auth
-  #, only: [:new, :create, :edit, :update, :destroy]
+  before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_gig, only: [:show, :edit, :update, :destroy]
   before_action :load_bands, only: [:new, :edit]
 
