@@ -1,131 +1,65 @@
-<!-- edit.html.erb -->
-
 <div class="container mt-5">
-  <div class="text-center">
-    <h1 class="mb-4">バンド情報を編集</h1>
+  <div class="text-center mb-4">
+    <h1>バンド編集フォーム</h1>
   </div>
-  
+
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10 col-sm-12">
-      <%= form_with(model: @band, local: true) do |form| %>
-        
+      <%= form_with model: @band, local: true do |form| %>
+
         <!-- バンド名 -->
         <div class="mb-3">
           <%= form.label :band_name, 'バンド名' %>
           <%= form.text_field :band_name, class: "form-control", required: true %>
         </div>
-        
+
         <!-- メンバー入力欄 -->
         <p>メンバー</p>
-        <div id="members_container" class="mb-3">
+        <% (1..9).each_slice(3) do |i, j, k| %>
           <div class="row mb-3">
-            <% (1..3).each do |i| %>
+            <% [i, j, k].compact.each do |num| %>
               <div class="col">
-                <%= form.text_field :"member_#{i}", class: "form-control", placeholder: "" %>
+                <%= form.text_field :"member_#{num}", class: "form-control", placeholder: "#{num}人目" %>
               </div>
             <% end %>
           </div>
-  
-          <div class="row mb-3">
-            <% (4..6).each do |i| %>
-              <div class="col">
-                <%= form.text_field :"member_#{i}", class: "form-control", placeholder: "" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-        
-        <!-- メンバー追加ボタン -->
-        <div class="mb-3">
-          <button type="button" id="add_member_btn" class="btn btn-secondary">メンバー入力欄を追加</button>
-        </div>
-        
+        <% end %>
+
         <!-- 説明 -->
         <div class="mb-3">
           <%= form.label :description, 'バンド紹介' %>
-          <%= form.text_area :description, class: "form-control", required: true %>
+          <%= form.text_area :description, class: "form-control", rows: 6, required: true %>
         </div>
-        
+
         <!-- リンク入力欄 -->
         <div id="links_container" class="mb-3">
-          <div class="row">
-            <div class="col-4">
-              <%= form.label :"link_name_1", "リンク名1" %>
-              <%= form.text_field :"link_name_1", class: "form-control" %>
+          <% (1..3).each do |i| %>
+            <div class="row mb-3">
+              <div class="col-4">
+                <%= form.label :"link_name_#{i}", "リンク名#{i}" %>
+                <%= form.text_field :"link_name_#{i}", class: "form-control" %>
+              </div>
+              <div class="col">
+                <%= form.label :"link_url_#{i}", "リンクURL#{i}" %>
+                <%= form.text_field :"link_url_#{i}", class: "form-control" %>
+              </div>
             </div>
-            <div class="col">
-              <%= form.label :"link_url_1", "リンクURL1" %>
-              <%= form.text_field :"link_url_1", class: "form-control" %>
-            </div>
-          </div>
+          <% end %>
         </div>
-        
-        <!-- リンク追加ボタン -->
-        <button type="button" id="add_link_btn" class="btn btn-secondary mb-3">リンク入力欄を追加</button>
-        
+
         <!-- 画像 -->
         <div class="mb-3">
           <%= form.label :image, 'バンド写真' %>
           <%= form.file_field :image, class: "form-control" %>
         </div>
-        
-        <!-- 更新ボタン -->
+
+        <!-- 登録ボタン -->
         <div class="d-flex justify-content-end">
-          <%= link_to "戻る", band_path(@band.id), class: "btn btn-secondary btn-lg me-3" %>
+          <%= link_to "戻る", bands_path, class: "btn btn-secondary btn-lg me-3" %>
           <%= form.submit '更新', class: "btn btn-primary btn-lg" %>
         </div>
-      
+        
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var membersContainer = document.getElementById('members_container');
-  var addMemberBtn = document.getElementById('add_member_btn');
-
-  var memberId = 7;
-
-  addMemberBtn.addEventListener('click', function() {
-    console.log('Add member button clicked'); // デバッグ用ログ
-    if (memberId <= 9) {
-      var newMemberInput = document.createElement('div');
-      newMemberInput.classList.add('mb-3', 'row');
-      newMemberInput.innerHTML = `
-        <div class="col">
-          <input type="text" id="member_${memberId}" name="band[member_${memberId}]" class="form-control">
-        </div>
-      `;
-
-      membersContainer.appendChild(newMemberInput);
-      memberId++;
-    }
-  });
-
-  var linksContainer = document.getElementById('links_container');
-  var addLinkBtn = document.getElementById('add_link_btn');
-
-  var linkId = 2;
-
-  addLinkBtn.addEventListener('click', function() {
-    console.log('Add link button clicked'); // デバッグ用ログ
-    if (linkId <= 4) {
-      var newLinkInput = document.createElement('div');
-      newLinkInput.classList.add('mb-3', 'row');
-      newLinkInput.innerHTML = `
-        <div class="col-4">
-          <label for="link_name_${linkId}">リンク名${linkId}</label>
-          <input type="text" id="link_name_${linkId}" name="band[link_name_${linkId}]" class="form-control">
-        </div>
-        <div class="col">
-          <label for="link_url_${linkId}">リンクURL${linkId}</label>
-          <input type="text" id="link_url_${linkId}" name="band[link_url_${linkId}]" class="form-control">
-        </div>
-      `;
-      linksContainer.appendChild(newLinkInput);
-      linkId++;
-    }
-  });
-});
-</script>
