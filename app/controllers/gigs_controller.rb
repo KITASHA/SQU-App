@@ -38,6 +38,7 @@ class GigsController < ApplicationController
   end
 
   def destroy
+    @gig.gig_bands.destroy_all # 先に関連するレコードを削除
     @gig.destroy
     redirect_to gigs_path
   end
