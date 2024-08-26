@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="岡山アカペラサークルSQUAREの公式サイトです。サークルの概要や最新のイベント情報などを掲載しています。">
     <title>岡山アカペラサークルSQUARE</title>
-    <link rel="canonical" href="https://getbootstrap.jp/docs/5.3/examples/album/">
-
+    
     <!-- Rails Asset Pipeline -->
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
     <%= csp_meta_tag %>
     <%= csrf_meta_tags %>
 
-    <!-- Correct Paths for Bootstrap CSS -->
+    <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zZ9S8EjH3U8zbbFks4p2ck/5IUTz6tFhPEB0z6kD" crossorigin="anonymous">
 
-    <!-- Favicons (adjust paths if needed) -->
+    <!-- Favicons -->
     <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -25,50 +24,63 @@
     <link rel="icon" href="/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#FFFDD0">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9468162571611862"
-    crossorigin="anonymous"></script>
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9468162571611862" crossorigin="anonymous"></script>
   </head>
-  <body>
 
+  <body>
     <header data-bs-theme="dark">
       <div class="collapse text-bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
-              <h4>Wellcome! <% if user_signed_in? %><%= current_user.name %>さん<%end%></h4>
-              <p class="text-body-secondary">
-                NEWS<br>
-                新しいお知らせはありません<br>
-                </p>
+              <h4>Welcome! <% if user_signed_in? %><%= current_user.name %>さん<% end %></h4>
+              <p class="text-body-secondary">NEWS</p>
+              <ul>
+                <% @topics&.each do |topic| %>
+                  <li>
+                    <strong><%= topic.date.strftime("%Y/%m/%d") %></strong> - <%= topic.news %>
+                  </li>
+                <% end %>
+              </ul>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4>Contact</h4>
               <ul class="list-unstyled">
-                <li><a href="https://twitter.com/square_okayama" class="text-white">Follow on X</a></li>
-                <li><a href="https://www.instagram.com/square_okayama/" class="text-white">Like on Instagram</a></li>
-                <%# <li><a href="https://lin.ee/IuJbKyTu" class="text-white">LINE me</a></li> %>
+                <li class="mb-1">
+                  <a href="https://twitter.com/square_okayama" class="btn btn-outline-light">Follow on X</a>
+                </li>
+                <li class="mb-1">
+                  <a href="https://www.instagram.com/square_okayama/" class="btn btn-outline-light">Like on Instagram</a>
+                </li>
+                <%# Uncomment the line below for LINE integration %>
+                <%# <li class="mb-3"><a href="https://lin.ee/IuJbKyTu" class="btn btn-outline-light">LINE me</a></li> %>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
+      <nav class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
           <a href="#" class="navbar-brand d-flex align-items-center">
-
+            <!-- Add logo or branding here if necessary -->
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-      </div>
+      </nav>
     </header>
+
     <%= yield %>
+
     <footer class="text-body-secondary py-5">
       <div class="container">
         <p class="float-end mb-1"><a href="/">Back to top</a></p>
       </div>
     </footer>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>

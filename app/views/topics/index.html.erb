@@ -1,21 +1,29 @@
 <div class="col-md-12">
-  <h2 class="featurette-heading fw-normal lh-1">ニュース一覧</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">日付</th>
-        <th scope="col">内容</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @topics.each do |topic| %>
+<div class="container my-5">
+  <h2 class="featurette-heading fw-bold lh-1 mb-4">ニュース一覧</h2>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class="table-light">
         <tr>
-          <td><%= topic.date.strftime("%m/%d") %></td>
-          <td><%= topic.news %></td>
-          <td><%= link_to '削除', topic_path(topic.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %></td>
+          <th scope="col">日付</th>
+          <th scope="col">内容</th>
+          <th scope="col"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-      <%= link_to '登録', new_topic_path, class: 'btn btn-primary' %>
+      </thead>
+      <tbody>
+        <% @topics.each do |topic| %>
+          <tr>
+            <td><%= topic.date.strftime("%Y/%m/%d") %></td>
+            <td><%= topic.news %></td>
+            <td>
+              <%= link_to '削除', topic_path(topic.id), data: { turbo_method: :delete }, class: 'btn btn-danger btn-sm', onclick: "return confirm('本当に削除しますか？');" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-end mt-4">
+    <%= link_to '新規ニュース登録', new_topic_path, class: 'btn btn-primary' %>
+  </div>
 </div>
