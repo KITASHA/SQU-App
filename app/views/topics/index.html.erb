@@ -1,0 +1,21 @@
+<div class="col-md-12">
+  <h2 class="featurette-heading fw-normal lh-1">ニュース一覧</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">日付</th>
+        <th scope="col">内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr>
+          <td><%= topic.date.strftime("%m/%d") %></td>
+          <td><%= topic.news %></td>
+          <td><%= link_to '削除', topic_path(topic.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+      <%= link_to '登録', new_topic_path, class: 'btn btn-primary' %>
+</div>

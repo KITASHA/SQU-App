@@ -22,12 +22,8 @@ class HomesController < ApplicationController
   def swow_3
   end
 
-  # サークル説明資料PDF表示
-  def document
-  end
-
-  # サークル規約PDF表示
-  def terms
+  #設定ページ
+  def option
   end
 
 end

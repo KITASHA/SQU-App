@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-md-center mt-5">
     <div class="col-md-6">
-      <h2 class="text-center mb-4">Sign up</h2>
+      <h2 class="text-center mb-4">新規登録</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="text-center">
+        <div class="d-flex justify-content-end">
           <%= f.submit "新規登録する", class: "btn btn-primary" %>
         </div>
       <% end %>

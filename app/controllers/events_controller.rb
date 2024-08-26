@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :basic_auth, only: [:new, :create, :destroy]
-  before_action :set_event, only: [:destroy]
 
   def index
     @events = Event.all
@@ -21,16 +20,12 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_path, notice: 'Event was successfully deleted.'
   end
 
   private
-
-  def set_event
-    @event = Event.find(params[:id])
-  end
-
   def event_params
     params.require(:event).permit(:date, :start_time, :finish_time, :location)
   end

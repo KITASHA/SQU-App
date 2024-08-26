@@ -4,37 +4,40 @@
       <h2 class="text-center mb-4">ユーザー情報の変更</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", novalidate: true }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="mb-3">
-          <%= f.label :name, "名前", class: "form-label" %>
-          <%= f.text_field :name, class: "form-control" %>
-        </div>
+      <div class="mb-3">
+        <%= f.label :name, "名前", class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-        <div class="mb-3">
-          <%= f.label :email, "メールアドレス", class: "form-label" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
-        </div>
+      <div class="mb-3">
+        <%= f.label :email, "メールアドレス", class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+      </div>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="mb-3">
-          <%= f.label :password, "パスワード", class: "form-label" %> <i>(現在のパスワードを入力してください)</i>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-        </div>
-
-        <div class="text-center">
-          <%= f.submit "Update", class: "btn btn-primary" %>
-          <%= link_to "Back", :back, class: "btn btn-secondary" %>
-        </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-<div class="container" style="margin-top: 80px;">
+
+      <div class="mb-3">
+        <%= f.label :password, "パスワード", class: "form-label" %> <i>(現在のパスワードを入力してください)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <%= link_to "戻る", :back, class: "btn btn-secondary me-3" %> 
+        <%= f.submit "更新", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="container" style="margin-top: 80px;">
       <div class="mt-3">
         <h4>ユーザー情報を削除する</h4>
-        <div>一度削除すると取り消せません <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></div>
+        <div>一度削除すると取り消せません <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+        </div>
       </div>
     </div>
+
   </div>
 </div>

@@ -26,8 +26,8 @@ Rails.application.configure do
   # アセットのデバッグモードを無効にする。これにより、アセットが圧縮される
   config.assets.debug = false
 
-  # アップロードされたファイルをローカルファイルシステムに保存
-  config.active_storage.service = :local
+  # アップロードされたファイルをS3に保存
+  config.active_storage.service = :amazon
 
   # ログの出力レベルを情報に設定
   config.log_level = :info

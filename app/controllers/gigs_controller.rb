@@ -1,6 +1,6 @@
 class GigsController < ApplicationController
   before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_gig, only: [:show, :edit, :update, :destroy]
+  before_action :set_gig, only: [:show, :edit, :update, :destroy]
   before_action :load_bands, only: [:new, :edit]
 
   def index
@@ -43,7 +43,7 @@ class GigsController < ApplicationController
   end
 
   private
-  def find_gig
+  def set_gig
     @gig = Gig.find(params[:id])
   end
 

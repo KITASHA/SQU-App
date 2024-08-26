@@ -1,0 +1,39 @@
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="images/image_9.jpg" alt="本" style="width: 100%; height: 225px;">
+          <div class="card-body">
+            <p class="card-text">ユーザー情報の変更</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to edit_user_registration_path, class: "btn btn-sm btn-outline-secondary" do %>
+                  こちらから &raquo;
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="images/image_9.jpg" alt="本" style="width: 100%; height: 225px;">
+          <div class="card-body">
+            <p class="card-text">ニュースの追加・削除</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to topics_path, class: "btn btn-sm btn-outline-secondary" do %>
+                  こちらから &raquo;
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

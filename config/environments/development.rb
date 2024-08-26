@@ -26,8 +26,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # アップロードされたファイルをローカルファイルシステムに保存
-  config.active_storage.service = :local
+  # アップロードされたファイルをS3に保存
+  config.active_storage.service = :amazon
 
   # メール送信に関するエラーを無視
   config.action_mailer.raise_delivery_errors = false
