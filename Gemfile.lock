@@ -391,7 +391,7 @@ DEPENDENCIES
   openai
   pg (~> 1.5)
   puma (~> 5.0)
-  rails
+  rails (= 7.2.1)
   rubocop
   sassc-rails
   selenium-webdriver
