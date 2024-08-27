@@ -79,8 +79,6 @@ group :production do
   gem 'unicorn', '6.1.0'
 end
 
-gem 'pg', '~> 1.2'
-
 gem 'bootstrap', '~> 5.2.3'
 gem 'jquery-rails'
 gem 'devise'
