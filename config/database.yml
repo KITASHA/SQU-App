@@ -1,7 +1,6 @@
 default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -22,8 +21,7 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
   database: SQU-App_production
-  username: root
+  username: postgres
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
+  host: localhost
