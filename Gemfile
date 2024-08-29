@@ -91,4 +91,4 @@ gem 'httparty'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'openai'
 
-gem 'pg', '< 1.2'
+gem 'pg'
