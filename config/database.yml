@@ -15,7 +15,7 @@ test:
   <<: *default
   adapter: mysql2
   username: root
-  password:
+  password: fvju0301
   host: localhost
   database: SUQ-App_test
 
