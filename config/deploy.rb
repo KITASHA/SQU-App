@@ -5,7 +5,7 @@ lock '3.19.1'
 set :application, 'SUQ-App'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url,  'git@github.com:KITASHA/SUQ-App.git.git'
+set :repo_url, 'git@github.com:KITASHA/SUQ-App.git'
 set :branch, 'main'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
