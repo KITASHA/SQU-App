@@ -21,6 +21,8 @@ test:
 production:
   <<: *default
   adapter: mysql2
+  encoding: utf8mb4
+  reconnect: true
   database: SQU-App_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
