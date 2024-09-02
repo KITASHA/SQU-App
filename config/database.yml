@@ -8,7 +8,7 @@ development:
   username: root
   password: fvju0301
   host: localhost
-  database: SUQ-App_development
+  database: SQU-App_development
 
 test:
   <<: *default
@@ -16,7 +16,7 @@ test:
   username: root
   password: fvju0301
   host: localhost
-  database: SUQ-App_test
+  database: SQU-App_test
 
 production:
   <<: *default

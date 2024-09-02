@@ -2,10 +2,10 @@
 lock '3.19.1'
 
 # Capistranoのログの表示に利用する
-set :application, 'SUQ-App'
+set :application, 'SQU-App'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url, 'git@github.com:KITASHA/SUQ-App.git'
+set :repo_url, 'git@github.com:KITASHA/SQU-App.git'
 set :branch, 'main'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
