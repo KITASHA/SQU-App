@@ -112,7 +112,7 @@ PASS：1101
 # ローカルでの動作方法
 
 1. リポジトリをクローンします。  
-% git clone https://github.com/KITASHA/SUQ-App.git
+% git clone https://github.com/KITASHA/SQU-App.git
 
 2. プロジェクトのディレクトリに移動します。  
 % cd SQU-App
