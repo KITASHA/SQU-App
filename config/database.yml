@@ -27,4 +27,4 @@ production:
   database: SQU-App_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/lib/mysql/mysql.sock
