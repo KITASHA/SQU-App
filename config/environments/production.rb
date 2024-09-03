@@ -38,6 +38,9 @@ Rails.application.configure do
   # ログのフォーマットをデフォルトのものに設定
   config.log_formatter = ::Logger::Formatter.new
 
+  # HTTPS のみを許可し、HTTP リクエストを強制的に HTTPS にリダイレクト
+  config.force_ssl = true
+
   # STDOUT にログを出力するための設定。環境変数に基づく
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
