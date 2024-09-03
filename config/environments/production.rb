@@ -39,7 +39,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # HTTPS のみを許可し、HTTP リクエストを強制的に HTTPS にリダイレクト
-  config.force_ssl = true
+  config.force_ssl =  false
 
   # STDOUT にログを出力するための設定。環境変数に基づく
   if ENV["RAILS_LOG_TO_STDOUT"].present?
