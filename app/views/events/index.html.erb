@@ -25,6 +25,7 @@
 
 <div class="col-md-12">
   <h2 class="featurette-heading fw-normal lh-1">体験・見学可能日</h2>
+  <%# 元の記載はdrill.rbに %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,17 +36,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @events.each do |event| %>
         <tr>
-          <td><%= event.date.strftime("%m/%d") %></td>
-          <td><%= event.start_time.present? ? event.start_time.strftime("%H:%M") : "時間未設定" %></td>
-          <td><%= event.finish_time.present? ? event.finish_time.strftime("%H:%M") : "時間未設定" %></td>
-          <td><%= event.location %></td>
-          <% if user_signed_in? %>
-          <td><%= link_to '削除', event_path(event.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %></td>
-          <% end %>
+          <td>9月22日(日)</td>
+          <td>14:00</td>
+          <td>17:00</td>
+          <td>スタジオバース 倉敷  黄スタジオ</td>
+          
         </tr>
-      <% end %>
     </tbody>
   </table>
   <% if user_signed_in? %>

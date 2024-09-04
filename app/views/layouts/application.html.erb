@@ -36,13 +36,14 @@
             <div class="col-sm-8 col-md-7 py-4">
               <h4>Welcome! <% if user_signed_in? %><%= current_user.name %>さん<% end %></h4>
               <p class="text-body-secondary">NEWS</p>
-              <ul>
-                <% @topics&.each do |topic| %>
-                  <li>
-                    <strong><%= topic.date.strftime("%Y/%m/%d") %></strong> - <%= topic.news %>
-                  </li>
-                <% end %>
-              </ul>
+                2024/09/04  Okayama Music SQUARE Vol.5 募集開始しました！
+              <%# <ul> %>
+                <%# <% @topics&.each do |topic| %> 
+                  <%# <li> %>
+                    <%# <strong><%= topic.date.strftime("%Y/%m/%d")</strong> - <%= topic.news %>
+                  <%# </li> %>
+                <%# <% end %> 
+              <%# </ul> %>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4>Contact</h4>
