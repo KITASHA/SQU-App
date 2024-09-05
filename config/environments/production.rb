@@ -15,7 +15,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # アセットのコンパイル時にエラーを出さないように設定。プリコンパイル済みのアセットが利用される
-  config.assets.compile = false
+  config.assets.compile = true
   
   # プリコンパイルするアセットのリストを指定
   config.assets.precompile += %w( application.js application.css )
