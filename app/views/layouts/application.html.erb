@@ -39,7 +39,7 @@
               <ul>
                 <% @topics&.each do |topic| %> 
                   <li>
-                    <strong><%= topic.date.strftime("%Y/%m/%d")</strong> - <%= topic.news %>
+                    <strong><%= topic.date.strftime("%Y/%m/%d") %></strong> - <%= topic.news %>
                   </li>
                 <% end %> 
               </ul>
