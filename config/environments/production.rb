@@ -29,8 +29,8 @@ Rails.application.configure do
   # アップロードされたファイルをS3に保存
   config.active_storage.service = :amazon
 
-  # ログの出力レベルをデバックに設定
-  config.log_level = :debug
+  # ログの出力レベルを情報に設定
+  config.log_level = :info
   
   # ログにリクエストIDを付加
   config.log_tags = [ :request_id ]
