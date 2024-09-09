@@ -7,10 +7,10 @@
     <div class="col-lg-8 col-md-10 col-sm-12">
       <!-- 出演バンド -->
       <div class="mb-3">
-        <h4>出演バンド</h4>
+        <h5>出演</h5>
         <ul>
           <% @gig.bands.each do |band| %>
-            <li>
+            <li style="font-size: 1.2em; font-weight: bold;">
               <%= link_to band.band_name, band_path(band) %>
             </li>
           <% end %>
@@ -19,24 +19,33 @@
 
       <!-- 日付と時間 -->
       <div class="mb-3">
-        <h4>開催日時</h4>
-        <p>
-          <%= @gig.date.strftime("%Y年%m月%d日") %> <br>
-          <%= @gig.start_time.strftime("%H時%M分") %> - 
+        <h5>日時</h5>
+        <% days_of_week = ["日", "月", "火", "水", "木", "金", "土"] %>
+        <p style="font-size: 1.2em; font-weight: bold;">
+          <%= "#{@gig.date.strftime("%y年%m月%d日")} (#{days_of_week[@gig.date.wday]})" %><br>
+          <%= @gig.start_time.strftime("%H時%M分") %> ~ 
+          <% if @gig.end_time.present? %> 
           <%= @gig.end_time.strftime("%H時%M分") %>
+          <% end %>
         </p>
+      </div>
+
+      <!-- 場所 -->
+      <div class="mb-3">
+        <h5>場所</h5>
+        <p style="font-size: 1.2em; font-weight: bold;"><%= @gig.location %></p>
       </div>
 
       <!-- 説明 -->
       <div class="mb-3">
-        <h4>イベント概要</h4>
-        <p><%= @gig.description %></p>
+        <h5>概要</h5>
+        <div style="font-size: 1.2em; font-weight: bold;"><%= simple_format(@gig.description) %></div>
       </div>
 
       <!-- リンク -->
       <% if @gig.link_name.present? && @gig.link_url.present? %>
-        <div class="mb-3">
-          <h4>リンク</h4>
+        <div class="mb-3" style="font-size: 1.2em; font-weight: bold;">
+          <h5>リンク</h5>
           <a href="<%= @gig.link_url %>" target="_blank"><%= @gig.link_name %></a>
         </div>
       <% end %>
@@ -44,7 +53,6 @@
       <!-- 画像 -->
       <% if @gig.image.attached? %>
         <div class="mb-3">
-          <h4>フライヤー</h4>
           <%= image_tag @gig.image, class: "img-fluid" %>
         </div>
       <% end %>

@@ -52,7 +52,7 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-    params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :description, :link_name, :link_url, :image, band_ids: [])
+    params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :location, :description, :link_name, :link_url, :image, band_ids: [])
   end
 
   def basic_auth

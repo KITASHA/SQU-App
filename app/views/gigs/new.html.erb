@@ -19,13 +19,13 @@
 
         <!-- イベント名 -->
         <div class="mb-3">
-          <%= form.label :gig_name, 'イベント名' %>
-          <%= form.text_field :gig_name, class: "form-control", required: true %>
+          <%= form.label :gig_name, 'イベント名', class: "form-label" %>
+          <%= form.text_field :gig_name, class: "form-control", placeholder: "イベント名を入力", required: true %>
         </div>
 
         <!-- 出演バンド -->
         <div class="mb-3">
-          <%= form.label :band_ids, '出演バンド' %>
+          <%= form.label :band_ids, '出演バンド', class: "form-label" %>
           <div class="form-check">
             <% @bands.each do |band| %>
               <%= check_box_tag 'gig[band_ids][]', band.id, @gig.band_ids.include?(band.id), id: "band_#{band.id}", class: "form-check-input" %>
@@ -36,48 +36,54 @@
 
         <!-- 日付 -->
         <div class="mb-3">
-          <%= form.label :date, 'イベント日付' %>
+          <%= form.label :date, '日付', class: "form-label" %>
           <%= form.date_field :date, class: "form-control", required: true %>
         </div>
 
         <!-- 開始時間 -->
         <div class="mb-3">
-          <%= form.label :start_time, '開始時間' %>
+          <%= form.label :start_time, '開始時間', class: "form-label" %>
           <%= form.time_field :start_time, class: "form-control", required: true %>
         </div>
 
         <!-- 終了時間 -->
         <div class="mb-3">
-          <%= form.label :end_time, '終了時間' %>
-          <%= form.time_field :end_time, class: "form-control", required: true %>
+          <%= form.label :end_time, '終了時間', class: "form-label" %>
+          <%= form.time_field :end_time, class: "form-control" %>
         </div>
-        
+
+        <!-- 場所 -->
+        <div class="mb-3">
+          <%= form.label :location, '場所', class: "form-label" %>
+          <%= form.text_field :location, class: "form-control", placeholder: "イベントの場所を入力" %>
+        </div>
+
         <!-- 説明 -->
         <div class="mb-3">
-          <%= form.label :description, 'イベント概要' %>
-          <%= form.text_area :description, class: "form-control", required: true %>
+          <%= form.label :description, '概要', class: "form-label" %>
+          <%= form.text_area :description, class: "form-control", placeholder: "イベントの概要を入力（一覧画面で表示されるのは１００字まで）", required: true, rows: 3 %>
         </div>
-        
+
         <!-- リンク入力欄 -->
-        <div id="links_container" class="mb-3">
+        <div class="mb-3" id="links_container">
           <div class="row">
             <div class="col-4">
-              <%= form.label :link_name, "リンク名" %>
+              <%= form.label :link_name, "リンク名", class: "form-label" %>
               <%= form.text_field :link_name, class: "form-control" %>
             </div>
             <div class="col">
-              <%= form.label :link_url, "リンクURL" %>
+              <%= form.label :link_url, "リンクURL", class: "form-label" %>
               <%= form.text_field :link_url, class: "form-control" %>
             </div>
           </div>
         </div>
-        
+
         <!-- 画像 -->
         <div class="mb-3">
-          <%= form.label :image, 'イベントロゴ' %>
+          <%= form.label :image, 'フライヤー', class: "form-label" %>
           <%= form.file_field :image, class: "form-control" %>
         </div>
-        
+
         <!-- 登録ボタン -->
         <div class="d-flex justify-content-end">
           <%= link_to "戻る", gigs_path, class: "btn btn-secondary me-3" %>
@@ -87,3 +93,4 @@
     </div>
   </div>
 </div>
+
