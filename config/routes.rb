@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   resources :songs, only: [:new,:create,:destroy]
   resources :parts 
-  resources :bands
+  resources :bands, param: :slug
   resources :groups, only: :index
   resources :members, only: [:index,:new,:create,:destroy]
   resources :events, only: [:index,:new,:create,:destroy]

@@ -1,4 +1,7 @@
 class Band < ApplicationRecord
+  extend FriendlyId
+  friendly_id :band_name, use: :slugged
+
   has_one_attached :image
   belongs_to :user
   validates :band_name, presence: true
