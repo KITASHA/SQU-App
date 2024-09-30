@@ -5,7 +5,7 @@ namespace :embedding do
   task generate: :environment do
     client = OpenAiClient.new
 
-    file_path = Rails.root.join('data', 'text.txt')
+    file_path = Rails.root.join('lib', 'text.txt') 
     File.readlines(file_path).each do |line|
       text = line.strip
       next if text.empty?
