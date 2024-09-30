@@ -17,7 +17,7 @@ class ChatsController < ApplicationController
     end
 
     # 最も関連性の高い情報を取得
-    best_match_text = best_match.text if best_match
+    best_match_text = best_match&.text || "関連する情報が見つかりませんでした。"
 
     # OpenAI APIを使って応答を生成
     response = client.generate_response_with_context(user_prompt, best_match_text)
@@ -27,7 +27,6 @@ class ChatsController < ApplicationController
 
     render json: { response: response }
   end
-  
 
   private
 
@@ -45,4 +44,3 @@ class ChatsController < ApplicationController
     end
   end
 end
-

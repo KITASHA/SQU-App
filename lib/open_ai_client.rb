@@ -13,6 +13,8 @@ class OpenAiClient
 
   # チャット応答を生成するメソッド
   def generate_response(prompt)
+    return { error: "Prompt is missing." } if prompt.nil? || prompt.empty?
+
     options = {
       body: {
         model: "gpt-3.5-turbo",
@@ -23,11 +25,18 @@ class OpenAiClient
     }
 
     response = self.class.post("/chat/completions", options)
-    response.parsed_response
+
+    if response.success?
+      response.parsed_response
+    else
+      { error: response.parsed_response['error']['message'] }
+    end
   end
 
   # エンベディングを生成するメソッド
   def generate_embedding(text)
+    return { error: "Text is missing." } if text.nil? || text.empty?
+
     options = {
       body: {
         model: "text-embedding-ada-002",
@@ -37,10 +46,18 @@ class OpenAiClient
     }
 
     response = self.class.post("/embeddings", options)
-    response.parsed_response['data'].first['embedding']
+
+    if response.success?
+      response.parsed_response['data'].first['embedding']
+    else
+      { error: response.parsed_response['error']['message'] }
+    end
   end
   
+  # コンテキスト付きの応答を生成するメソッド
   def generate_response_with_context(prompt, context)
+    return { error: "Prompt or context is missing." } if prompt.nil? || prompt.empty? || context.nil? || context.empty?
+
     options = {
       body: {
         model: "gpt-3.5-turbo",
@@ -55,6 +72,11 @@ class OpenAiClient
     }
 
     response = self.class.post("/chat/completions", options)
-    response.parsed_response
+
+    if response.success?
+      response.parsed_response
+    else
+      { error: response.parsed_response['error']['message'] }
+    end
   end
 end
