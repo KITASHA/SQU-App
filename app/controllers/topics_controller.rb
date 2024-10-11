@@ -17,12 +17,13 @@ class TopicsController < ApplicationController
       render :new
     end
   end
+  
 
 
   def destroy
     @topic = Topic.find(params[:id])
     @topic.destroy
-    redirect_to topics_path, notice: 'Topic was successfully deleted.'
+    redirect_to topics_path
   end
 
   private

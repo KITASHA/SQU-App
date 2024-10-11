@@ -19,7 +19,6 @@ class GigsController < ApplicationController
     if @gig.save
       redirect_to @gig, notice: 'Gig was successfully created.'
     else
-      flash.now[:alert] = 'Failed to create gig. Please check the errors below.'
       render :new, status: :unprocessable_entity, locals: { gig: @gig }
     end
   end
