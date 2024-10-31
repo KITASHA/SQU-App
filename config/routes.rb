@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :groups, only: :index
   resources :members, only: [:index,:new,:create,:destroy]
   resources :events, only: [:index,:new,:create,:destroy]
-  resources :gigs
+  resources :gigs do
+    collection do
+      get :archive
+    end
+  end
   resources :topics, only: [:index,:new,:create,:destroy]
   get 'chats', to: 'chats#index'
   post 'chat/create', to: 'chats#create'

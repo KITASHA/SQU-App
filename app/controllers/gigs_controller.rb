@@ -3,7 +3,11 @@ class GigsController < ApplicationController
   before_action :set_gig, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gigs = Gig.includes(:bands).order(date: :asc)
+    @gigs = Gig.includes(:bands).where('date >= ?', Date.today).order(date: :asc)
+  end
+
+  def archive
+    @gigs = Gig.includes(:bands).where('date < ?', Date.today).order(date: :desc)
   end
 
   def new
