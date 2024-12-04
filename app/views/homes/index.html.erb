@@ -63,7 +63,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="https://www.youtube.com/channel/UCpcjVaT57zyOhB92BROiTBA" class="btn btn-sm btn-outline-secondary" target="_blank" role="button">
-                                        もっと見る
+                                        もっと見る &raquo;
                                     </a>
                                 </div>
                             </div>
@@ -153,18 +153,19 @@
             </div>
             <div class="col">
                 <div class="card shadow-sm">
-                    <iframe width="100%" height="225" src="https://www.youtube.com/embed/videoseries?list=PLzago6UsCqmSz7mHW87ociKg6EpgTTmjP" title="YouTube Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <div class="card-body">
-                            <p class="card-text">発声ワークショップ動画</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <a href="https://youtube.com/playlist?list=PLzago6UsCqmSz7mHW87ociKg6EpgTTmjP&si=RvbGa-I27apfQeQs" class="btn btn-sm btn-outline-secondary" role="button">再生リスト &raquo;</a>
-                                </div>
+                    <img src="images/image_10.jpg" alt="" style="width: 100%; height: 225px;">
+                    <div class="card-body">
+                        <p class="card-text">発声ワークショップ動画</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <%= link_to workshop_home_path, class: "btn btn-sm btn-outline-secondary" do %>
+                                こちらから &raquo;
+                                <% end %>
                             </div>
                         </div>
                     </div>
                 </div>
-            <% end %>
-        </div>
+            </div>
+        <% end %>
     </div>
 </div>
