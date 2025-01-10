@@ -43,6 +43,9 @@ class BandsController < ApplicationController
   private
   def find_band
     @band = Band.friendly.find(params[:slug])
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.warn "Band not found with slug: #{params[:slug]}. Redirecting to index."
+    redirect_to bands_path, alert: "指定されたバンドが見つかりませんでした。"
   end
 
   private
