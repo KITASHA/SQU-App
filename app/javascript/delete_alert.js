@@ -10,7 +10,7 @@ const delete_alert = () => {
           'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
         }
       })
-      location.href = '/bands'; 
+      // location.href = '/bands'; 
       }else {
       event.preventDefault(); // 「いいえ」を選んだ場合は、削除処理をキャンセル
     }
