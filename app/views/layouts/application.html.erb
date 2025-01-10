@@ -29,6 +29,10 @@
     <!-- Google Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9468162571611862" crossorigin="anonymous"></script>
   </head>
+<!-- 上に戻るボタン -->
+      <button id="myBtn" class="btn position-fixed bottom-0 end-0 m-3" title="Go to top">
+        ↑
+      </button>
 
   <body>
    <header data-bs-theme="dark" style="position: fixed; top: 0; left: 0; right: 0; background-color: #fff; z-index: 1000;">
@@ -79,11 +83,6 @@
     <%= yield %>
 
     <footer class="text-body-secondary py-5">
-      <!-- 上に戻るボタン -->
-      <button id="myBtn" class="btn position-fixed bottom-0 end-0 m-3" title="Go to top">
-        ↑
-      </button>
-
       <div class="container">
         <p class="float-end mb-1"><a href="/">Back to top</a></p>
       </div>
