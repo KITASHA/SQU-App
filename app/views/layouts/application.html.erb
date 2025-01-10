@@ -31,48 +31,50 @@
   </head>
 
   <body>
-    <header data-bs-theme="dark" style="position: fixed; top: 0; left: 0; right: 0; background-color: #fff; z-index: 1000;">
-      <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4>Welcome! <% if user_signed_in? %><%= current_user.name %>さん<% end %></h4>
-              <p class="text-body-secondary">NEWS</p>
-              <ul>
-                <% @topics&.each do |topic| %> 
-                  <li>
-                    <strong><%= topic.date.strftime("%Y/%m/%d") %></strong> - <%= topic.news %>
-                  </li>
-                <% end %> 
-              </ul>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4>Contact</h4>
-              <ul class="list-unstyled">
-                <li class="mb-1">
-                  <a href="https://twitter.com/square_okayama" class="btn btn-outline-light">Follow on X</a>
-                </li>
-                <li class="mb-1">
-                  <a href="https://www.instagram.com/square_okayama/" class="btn btn-outline-light">Like on Instagram</a>
-                </li>
-                <%# Uncomment the line below for LINE integration %>
-                <%# <li class="mb-3"><a href="https://lin.ee/IuJbKyTu" class="btn btn-outline-light">LINE me</a></li> %>
-              </ul>
-            </div>
-          </div>
+   <header data-bs-theme="dark" style="position: fixed; top: 0; left: 0; right: 0; background-color: #fff; z-index: 1000;">
+  <div class="collapse text-bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4>Welcome! <% if user_signed_in? %><%= current_user.name %>さん<% end %></h4>
+          <p class="text-body-secondary">NEWS</p>
+          <ul>
+            <% @topics&.each do |topic| %> 
+              <li>
+                <strong><%= topic.date.strftime("%Y/%m/%d") %></strong> - <%= topic.news %>
+              </li>
+            <% end %> 
+          </ul>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4>Contact</h4>
+          <ul class="list-unstyled">
+            <li class="mb-1">
+              <a href="https://twitter.com/square_okayama" class="btn btn-outline-light">Follow on X</a>
+            </li>
+            <li class="mb-1">
+              <a href="https://www.instagram.com/square_okayama/" class="btn btn-outline-light">Like on Instagram</a>
+            </li>
+            <%# Uncomment the line below for LINE integration %>
+            <%# <li class="mb-3"><a href="https://lin.ee/IuJbKyTu" class="btn btn-outline-light">LINE me</a></li> %>
+          </ul>
         </div>
       </div>
-      <nav class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-          <a href="/" class="navbar-brand d-flex align-items-center">
-            Okayama A Cappella Circle SQUARE
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-    </header>
+    </div>
+  </div>
+  
+  <nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+        To Home
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
 
     <%= yield %>
 
