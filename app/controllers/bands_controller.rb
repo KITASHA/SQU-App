@@ -1,6 +1,6 @@
 class BandsController < ApplicationController
   before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_band, only: [:show, :edit, :update, :destroy]
+  before_action :set_band, only: [:show, :edit, :update, :destroy]
 
   def index
     @bands = Band.all
@@ -41,7 +41,7 @@ class BandsController < ApplicationController
   end
 
   private
-  def find_band
+  def set_band
     @band = Band.friendly.find(params[:slug])
   rescue ActiveRecord::RecordNotFound
     Rails.logger.warn "Band not found with slug: #{params[:slug]}. Redirecting to index."

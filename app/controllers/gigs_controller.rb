@@ -52,7 +52,10 @@ class GigsController < ApplicationController
   private
   def set_gig
     @gig = Gig.find(params[:id])
-  end
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.warn "Gig not found with id: #{params[:id]}. Redirecting to index."
+    redirect_to gigs_path, alert: "イベントが見つかりませんでした。"
+  end 
 
   def gig_params
     params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :location, :description, :link_name, :link_url, :image, band_ids: [])
