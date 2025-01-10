@@ -7,5 +7,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "reset"
-import "chat"
+import "top"
 import "delete_alert"

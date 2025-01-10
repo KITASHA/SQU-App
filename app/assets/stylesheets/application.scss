@@ -20,33 +20,6 @@
 object-fit: cover;
 }
 
-// チャットボット
-.chat-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.chat-message {
-  margin-bottom: 15px;
-}
-.chat-message p {
-  margin: 0;
-}
-.chat-bot {
-  background: #e9ecef;
-  border-radius: 10px;
-  padding: 10px;
-}
-.chat-user {
-  background: #d1e7dd;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: right;
-}
-
 /* スマホ用のスタイル */
 @media (max-width: 480px) {
   .text-body-secondary {
@@ -56,14 +29,6 @@ object-fit: cover;
     font-size: 13px;
   }
 }
-
-
-
-
-
-
-
-
 
 /* リセットCSS */
 * {
