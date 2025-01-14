@@ -1,17 +1,22 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const myBtn = document.getElementById("myBtn");
 
-  // ボタンを常に表示
-  myBtn.style.display = "block";
-
-  // ボタンをクリックしたときにトップへスムーズにスクロール
-  myBtn.addEventListener("click", function() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+  if (myBtn) {
+    myBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
+  }
+
+  window.addEventListener("scroll", function() {
+    if (myBtn) {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        myBtn.style.display = "block";
+      } else {
+        myBtn.style.display = "none";
+      }
+    }
   });
 });
-
-document.addEventListener("DOMContentLoaded", myBtn);
-window.addEventListener("turbo:load", myBtn);
