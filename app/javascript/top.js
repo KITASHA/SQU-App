@@ -1,24 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // スクロール位置が一定になるとボタンを表示
-  window.onscroll = function() {
-    let myBtn = document.getElementById("myBtn");
-    if (myBtn) {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        myBtn.style.display = "block"; // 100px以上スクロールされたら表示
-      } else {
-        myBtn.style.display = "none"; // それ以下なら非表示
-      }
-    }
-  };
+  const myBtn = document.getElementById("myBtn");
 
-  // ボタンが存在する場合にイベントリスナーを追加
-  let myBtn = document.getElementById("myBtn");
-  if (myBtn) {
-    myBtn.addEventListener("click", function() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
+  if (!myBtn) {
+    console.warn("myBtn 要素が見つかりませんでした");
+    return; // 要素がない場合は処理を終了
   }
+
+  // スクロール位置が一定になるとボタンを表示
+  window.addEventListener("scroll", function() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 100) {
+      myBtn.style.display = "block";
+    } else {
+      myBtn.style.display = "none";
+    }
+  });
+
+  // ボタンをクリックしたときにトップへスムーズにスクロール
+  myBtn.addEventListener("click", function() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 });

@@ -17,4 +17,5 @@ const delete_alert = () => {
   });
 };
 
+document.addEventListener("DOMContentLoaded", delete_alert);
 window.addEventListener("turbo:load", delete_alert);
