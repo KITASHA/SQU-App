@@ -22,11 +22,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
-
-// turbo:load イベント時にページのトップへ戻る処理を追加（不要であれば削除）
-window.addEventListener("turbo:load", function() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
