@@ -12,3 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", myBtn);
+window.addEventListener("turbo:load", myBtn);
