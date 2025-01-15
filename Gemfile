@@ -93,4 +93,4 @@ gem 'aws-sdk-s3'
 
 gem 'httparty'
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'openai'
+gem "gretel"

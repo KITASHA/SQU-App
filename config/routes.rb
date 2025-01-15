@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     end
   end
   resources :topics, only: [:index,:new,:create,:destroy]
-  get 'chats', to: 'chats#index'
-  post 'chat/create', to: 'chats#create'
   get '/homes/about', to: 'homes#about', as: 'about_home'
   get '/homes/show_1', to: 'homes#show_1', as: 'show_1_home'
   get '/homes/show_2', to: 'homes#show_2', as: 'show_2_home'
