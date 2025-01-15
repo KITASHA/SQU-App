@@ -39,6 +39,15 @@ class PartsController < ApplicationController
     redirect_to parts_path
   end
 
+  def reset_all
+    if params[:password] == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+      head :ok
+      Part.delete_all
+      Song.delete_all
+    else
+      head :forbidden
+    end
+  end
 
   private
 

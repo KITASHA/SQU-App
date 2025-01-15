@@ -1,5 +1,9 @@
 const reset = () => {
-  document.getElementById('reset-data').addEventListener('click', function() {
+    const resetButton = document.getElementById('reset-data');
+  
+    // 要素が存在する場合のみイベントを追加
+    if (resetButton) {
+      resetButton.addEventListener('click', function() {
     if (confirm("本当にすべてのデータを削除しますか？")) {
       const password = prompt('パスワードを入力してください');
       fetch('/reset_all', {
@@ -22,6 +26,7 @@ const reset = () => {
       });
     }
   });
+}
 }
 
 window.addEventListener("turbo:load", reset);

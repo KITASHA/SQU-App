@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get '/homes/show_4', to: 'homes#show_4', as: 'show_4_home'
   get '/homes/option', to: 'homes#option', as: 'option_home'
   get '/homes/workshop', to: 'homes#workshop', as: 'workshop_home'
-  delete '/reset_all', to: 'application#reset_all'
+  delete '/reset_all', to: 'parts#reset_all'
 end
