@@ -82,6 +82,7 @@ end
 group :production do
   gem 'unicorn', '6.1.0'
 end
+
 gem 'friendly_id', '~> 5.4'
 gem 'bootstrap', '~> 5.2.3'
 gem 'jquery-rails'
@@ -90,7 +91,5 @@ gem 'active_hash'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'aws-sdk-s3'
-
 gem 'httparty'
 gem 'dotenv-rails', groups: [:development, :test]
-gem "gretel"

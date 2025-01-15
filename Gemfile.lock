@@ -166,9 +166,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    gretel (5.0.1)
-      actionview (>= 6.1)
-      railties (>= 6.1)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -417,7 +414,6 @@ DEPENDENCIES
   devise
   dotenv-rails
   friendly_id (~> 5.4)
-  gretel
   httparty
   image_processing (~> 1.2)
   importmap-rails
