@@ -4,14 +4,15 @@
       <%= image_tag gig.image, class: "card-img-top", alt: "Gig image", style: "width: 100%; height: 500px; object-fit: cover; object-position: center;" %>
     <% end %>
     <div class="card-body">
-      <h4 class="card-title" style=" font-weight: bold;"><%= link_to gig.gig_name, gig_path(gig) %></h4>
-      <% days_of_week = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <p style="font-size: 1.1em; font-weight: bold;"><%= "#{gig.date.strftime("%m月%d日")} (#{days_of_week[gig.date.wday]})" %></p>
-      <p style="font-size: 1.1em; font-weight: bold;"><%= gig.location %></p> 
-      <p><%= truncate(gig.description, length: 100) %></p>
+      <%= link_to gig_path(gig), class: "stretched-link" do %>
+        <h4 class="card-title" style="font-weight: bold;"><%= gig.gig_name %></h4>
+        <% days_of_week = ["日", "月", "火", "水", "木", "金", "土"] %>
+        <p style="font-size: 1.1em; font-weight: bold;"><%= "#{gig.date.strftime("%m月%d日")} (#{days_of_week[gig.date.wday]})" %></p>
+        <p style="font-size: 1.1em; font-weight: bold;"><%= gig.location %></p> 
+        <p><%= truncate(gig.description, length: 100) %></p>
+      <% end %>
       <div class="d-flex justify-content-between align-items-center">
       </div>
     </div>
   </div>
 </div>
-
