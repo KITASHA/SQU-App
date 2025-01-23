@@ -1,43 +1,47 @@
 <div class="container marketing">
-  <div class="col-md-12" style="padding-top: 5rem; text-align: center;">
+  <div class="col-md-12 text-center" style="padding-top: 5rem;">
     <h1 class="featurette-heading fw-normal lh-1">Okayama Music SQUARE</h1>
   </div>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-10 col-sm-12">
+<div class="row featurette">
+  <% selected_release = Release.find_by(selected: true) %>
 
-      <% if @selected_release %>
-        <h3>選択されたリリース: <%= @selected_release.title %></h3>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= @selected_release.title %></h5>
-            <p class="card-text"><%= simple_format(@selected_release.body) %></p>
-            <% if @selected_release.image.attached? %>
-              <%= image_tag @selected_release.image, class: 'img-fluid' %>
-            <% end %>
-            <a href="<%= @selected_release.form_url %>" class="btn btn-primary mt-3">申し込みフォームへ</a>
-          </div>
-        </div>
+  <% if selected_release %>
+    <hr class="featurette-divider" style="margin-top: 40px;">
+    <div class="col-md-7 order-md-2">
+      <h3 class="featurette-heading fw-normal lh-1"><%= selected_release.title %></h3>
+      <p class="lead"><%= selected_release.body.gsub("\n", "<br>").html_safe %></p>
 
-      <% else %>
-        <p>選択されたリリースはありません。</p>
+      <% if selected_release.form_url.present? %>
+        <a href="<%= selected_release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;">申し込みフォームへ</a>
       <% end %>
-
     </div>
-  </div>
+
+    <% if selected_release.image.attached? %>
+      <div class="col-md-5 order-md-1 text-center">
+        <%= image_tag selected_release.image, class: 'img-fluid rounded-start', alt: selected_release.title %>
+      </div>
+    <% else %>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image xlink:href="/images/about_image_8.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+        </svg>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+
 
   <hr class="featurette-divider" style="margin-top: 40px;">
 
+  <!-- Event Description Section -->
   <div class="row featurette">
     <div class="col-md-7">
       <h3 class="featurette-heading fw-normal lh-1">SQUARE主催のストリートイベント</h3>
       <p class="lead">
         岡山に定期的にアカペラを披露するためのステージが欲しいという思いから始まりました。<br>
         一人でも多くのアカペラや音楽に接点の無い人たちに、シーンを知ってもらうきっかけになって欲しいというのが当イベントの趣旨です。<br><br>
-
-        そのために定期的にストリートで開催する事ににこだわっています。<br><br>
-
+        そのために定期的にストリートで開催する事にこだわっています。<br><br>
         プレイヤーの方々にも気軽にステージに立てる場としても知ってもらえれば幸いです。
       </p>
     </div>
@@ -51,16 +55,15 @@
 
   <hr class="featurette-divider">
 
+  <!-- Open to Various Music Section -->
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
       <h3 class="featurette-heading fw-normal lh-1">アカペラだけにこだわらない</h3>
       <p class="lead">
         あくまでアカペラは音楽を楽しむための演奏手法の一つであると考えています。<br>
         よってアカペラ以外の音楽も幅広く募集しています。<br><br>
-
-        アカペラバンドの以外での出演希望の方は<br>
+        アカペラバンド以外での出演希望の方は<br>
         ヘッダーのSNSリンクよりDMにてご連絡ください。<br><br>
-
         SQUAREというアカペラサークルをきっかけに色んな音楽シーンが交流する広場のようなイベントになってほしいという想いをイベント名に込めています。<br>
       </p>
     </div>
@@ -74,6 +77,7 @@
 
   <hr class="featurette-divider">
 
+  <!-- Video Section -->
   <div class="row featurette">
     <div class="col-md-7">
       <h3 class="featurette-heading fw-normal lh-1">動画で見る</h3>
@@ -81,8 +85,9 @@
         これまでのステージをアップしています。<br>
         是非ご覧ください♪<br><br>
       </p>
-      <a href="https://www.youtube.com/@square5877/playlists" class="btn btn-primary"style="margin-bottom: 10px;">
-        YouTube プレイリスト&raquo;</a>
+      <a href="https://www.youtube.com/@square5877/playlists" class="btn btn-primary" style="margin-bottom: 10px;">
+        YouTube プレイリスト&raquo;
+      </a>
     </div>
     <div class="col-md-5">
       <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" style="object-fit: contain;">
@@ -94,7 +99,8 @@
 
   <hr class="featurette-divider">
 
-  <div class="col-md-12" style="margin-top: 80px; text-align: center;">
+  <!-- Main Activities Section -->
+  <div class="col-md-12 text-center" style="margin-top: 80px;">
     <h1 class="featurette-heading fw-normal lh-1">主な活動内容</h1>
   </div>
 
@@ -149,4 +155,4 @@
   </div>
 
   <hr class="featurette-divider">
-</div><!-- /.container -->
+</div>

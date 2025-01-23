@@ -1,24 +1,25 @@
 <div class="container mt-5">
-  <hr class="featurette-divider" style="margin-top: 80px;">
+<hr class="featurette-divider" style="margin-top: 80px;">
+<!-- リリース詳細セクション -->
+<div class="row featurette">
+  <!-- テキスト部分 -->
+  <div class="col-md-7 order-md-2">
+    <h3 class="featurette-heading fw-normal lh-1"><%= @release.title %></h3>
+    <p class="lead"><%= @release.body.gsub("\n", "<br>").html_safe %></p>
 
-  <!-- リリース詳細セクション -->
-  <div class="row featurette">
-    <!-- テキスト部分 -->
-    <div class="col-md-7 order-md-2">
-      <h3 class="featurette-heading fw-normal lh-1"><%= @release.title %></h3>
-      <p class="lead"><%= @release.body.gsub("\n", "<br>").html_safe %></p>
-      <a href="<%= @release.form_url %>" class="btn btn-primary btn-lg" style="margin-top: 10px;">申し込みフォームへ</a>
-    </div>
-
-    <!-- 画像部分 -->
-    <% if @release.image.attached? %>
-      <div class="col-md-5 order-md-1 text-center">
-        <%= image_tag @release.image, class: 'img-fluid rounded-start', alt: @release.title %>
-      </div>
+    <% if @release.form_url.present? %>
+      <a href="<%= @release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;">申し込みフォームへ</a>
     <% end %>
   </div>
-  <hr class="featurette-divider" style="margin-top: 40px;">
 
+  <!-- 画像部分 -->
+  <% if @release.image.attached? %>
+    <div class="col-md-5 order-md-1 text-center">
+      <%= image_tag @release.image, class: 'img-fluid rounded-start', alt: @release.title %>
+    </div>
+  <% end %>
+</div>
+<hr class="featurette-divider" style="margin-top: 40px;">
   <!-- ボタンセクション -->
   <div class="text-center mt-4 d-flex justify-content-end">
     <div class="row justify-content-center">
@@ -29,16 +30,28 @@
         <%= link_to "編集", edit_release_path(@release), class: "btn btn-primary me-3" %>
       </div>
       <div class="col-auto">
+        <%= button_to "削除", release_path(@release), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4 d-flex justify-content-end">
+    <div class="row justify-content-center">
+      <div class="col-auto">
         <% if @release.selected? %>
           <%= link_to "非表示にする", toggle_selected_release_path(@release), method: :patch, class: "btn btn-warning" %>
         <% else %>
           <%= link_to "表示にする", toggle_selected_release_path(@release), method: :patch, class: "btn btn-success" %>
         <% end %>
       </div>
-      <div class="col-auto">
-        <%= button_to "削除", release_path(@release), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="text-center mt-4 d-flex justify-content-end">
+    <div class="row justify-content-center">
+       <div class="col-auto">
+        <%= link_to "ページを確認する", show_2_home_path, class: "btn btn-info" %>
       </div>
     </div>
   </div>
 </div>
+
 
