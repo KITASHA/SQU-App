@@ -2,74 +2,30 @@
   <div class="col-md-12" style="padding-top: 5rem; text-align: center;">
     <h1 class="featurette-heading fw-normal lh-1">Okayama Music SQUARE</h1>
   </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-10 col-sm-12">
 
-  <hr class="featurette-divider" style="margin-top: 40px;">
+      <% if @selected_release %>
+        <h3>選択されたリリース: <%= @selected_release.title %></h3>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= @selected_release.title %></h5>
+            <p class="card-text"><%= simple_format(@selected_release.body) %></p>
+            <% if @selected_release.image.attached? %>
+              <%= image_tag @selected_release.image, class: 'img-fluid' %>
+            <% end %>
+            <a href="<%= @selected_release.form_url %>" class="btn btn-primary mt-3">申し込みフォームへ</a>
+          </div>
+        </div>
 
-  <div class="row featurette">
-    <div class="col-md-7 order-md-2">
-      <h3 class="featurette-heading fw-normal lh-1">Okayama Music SQUARE Vol.6 <br>タイムテーブル</h3>
-      <p class="lead">
-        今回のタイムテーブル公開です！<br><br>
+      <% else %>
+        <p>選択されたリリースはありません。</p>
+      <% end %>
 
-
-        場所  ハッシュタグ岡山（BRANCH岡山北長瀬内）<br>
-        日時  1月18日(土)  13:00～17:40<br><br>
-
-        素敵なバンドがたくさん演奏します♪<br>
-        ぜひブランチ岡山までお越しください！<br>
-        お買い物のついでなどに立ち寄って頂けると嬉しいです！<br><br>
-
-        アカペラだけでなく弾き語りライブもございます<br>
-        アカペラを　音楽を<br>
-        楽しんでいただけると嬉しいです♪
-      </p>
-    </div>
-    <div class="col-md-5 order-md-1">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image xlink:href="/images/S__47235116.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
-      </svg>
     </div>
   </div>
-
-  <%# <hr class="featurette-divider">
-
-   <div class="row featurette">
-    <div class="col-md-7 order-md-2">
-      <h3 class="featurette-heading fw-normal lh-1">Okayama Music SQUARE Vol.6 開催決定！</h3>
-      <p class="lead">
-        開催決定に伴い、出演バンドを募集いたします！<br>
-        なんと今回は室内での実施なので雨天決行です！！<br>
-        1月ですが暖かいところで歌えます！<br><br>
-
-        開催場所  ハッシュタグ岡山<br>
-       （岡山県岡山市北区北長瀬表町2丁目17-80）<br>
-        ※BRANCH岡山北長瀬内 JR北長瀬駅から徒歩3分<br><br>
-
-        日時  令和7年1月18日(土)  13時～17時<br>
-        （参加バンド数によって前後する可能性がございます）<br><br>
-        申込期限  令和6年12月22日(日)<br>
-        下記のフォームより申し込みをお願い致します。
-
-        <br>
-        アカペラバンドの以外での出演希望の方は<br>
-        ヘッダーのSNSリンクよりDMにてご連絡ください。<br>
-
-        <div class="col-lg-6" style="margin-top: 10px;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR_E6HL9wmo-908_BjkM3Pdu_LpZE27D4HTPd5P1xBl9KwRQ/viewform" class="btn btn-primary btn-lg">
-          Okayama Music SQUARE Vol.6 申し込みフォーム&raquo;
-          </a>
-        </div>
-      </p>
-    </div>
-    <div class="col-md-5 order-md-1">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image xlink:href="/images/Msukuimage.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
-      </svg>
-    </div>
-  </div> %>
-
+</div>
 
   <hr class="featurette-divider" style="margin-top: 40px;">
 
