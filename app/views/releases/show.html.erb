@@ -21,13 +21,13 @@
 </div>
 <hr class="featurette-divider" style="margin-top: 40px;">
   <!-- ボタンセクション -->
-  <div class="text-center mt-4 d-flex justify-content-end">
-    <div class="row justify-content-center">
+  <div class="d-flex justify-content-end">
+    <div class="row justify-content">
       <div class="col-auto">
-        <%= link_to "戻る", option_home_path, class: "btn btn-secondary me-3" %>
+        <%= link_to "戻る", option_home_path, class: "btn btn-secondary" %>
       </div>
       <div class="col-auto">
-        <%= link_to "編集", edit_release_path(@release), class: "btn btn-primary me-3" %>
+        <%= link_to "編集", edit_release_path(@release), class: "btn btn-primary" %>
       </div>
       <div class="col-auto">
         <%= button_to "削除", release_path(@release), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
@@ -35,7 +35,7 @@
     </div>
   </div>
   <div class="text-center mt-4 d-flex justify-content-end">
-    <div class="row justify-content-center">
+    <div class="row justify-content">
       <div class="col-auto">
         <% if @release.selected? %>
           <%= link_to "非表示にする", toggle_selected_release_path(@release), method: :patch, class: "btn btn-warning" %>
