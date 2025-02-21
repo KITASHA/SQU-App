@@ -6,6 +6,5 @@
 //= require rails-ujs
 import "@hotwired/turbo-rails"
 import "controllers"
-import "reset"
 import "top"
 import "delete_alert"

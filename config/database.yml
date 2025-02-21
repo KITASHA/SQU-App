@@ -9,7 +9,8 @@ development:
   password: fvju0301
   host: localhost
   database: SQU-App_development
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /tmp/mysql.sock
+  
 
 test:
   <<: *default
