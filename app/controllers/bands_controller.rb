@@ -55,12 +55,10 @@ class BandsController < ApplicationController
       :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :link_name_4, :link_url_4, :image)
   end
 
-  
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
     end
   end
-  
   
 end

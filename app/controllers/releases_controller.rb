@@ -34,7 +34,7 @@ class ReleasesController < ApplicationController
   end
 
   def update
-    @release = Release.find(params[:id])  # これが通常のやり方です
+    @release = Release.find(params[:id])
     if @release.update(release_params)
       redirect_to releases_path, notice: 'リリースが更新されました。'
     else
@@ -58,11 +58,12 @@ class ReleasesController < ApplicationController
   end
 
   private
-
   def release_params
     params.require(:release).permit(:title, :body, :image, :form_url, :selected)
   end
+
   def set_release
     @release = Release.find(params[:id])
   end
+
 end
