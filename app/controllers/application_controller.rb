@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :devise_controller?
-  before_action :basic_auth, if: :release_controller?
-  before_action :basic_auth, if: :topics_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :load_topics
 
