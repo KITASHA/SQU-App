@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  before_action :basic_auth
   def index
     @topics = Topic.all
   end
@@ -27,4 +28,9 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:date, :news)
   end
 
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+    end
+  end
 end
