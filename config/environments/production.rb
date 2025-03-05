@@ -8,7 +8,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # エラーレポートを完全に無効にし、リクエストに対するキャッシングを有効にする
-  config.consider_all_requests_local = false
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = true
 
   # 静的ファイルを `/public` フォルダから提供するかどうかを設定。環境変数に基づく

@@ -33,3 +33,11 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
+
+namespace :deploy do
+  task :migrate do
+    on roles(:app) do
+      execute "cd #{release_path} && RAILS_ENV=#{fetch(:rails_env)} bundle exec rails db:migrate"
+    end
+  end
+end
