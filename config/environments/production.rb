@@ -30,7 +30,8 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   # ログの出力レベルを情報に設定
-  config.log_level = :info
+  config.log_level = :debug
+
   
   # ログにリクエストIDを付加
   config.log_tags = [ :request_id ]
