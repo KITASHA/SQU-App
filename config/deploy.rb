@@ -15,12 +15,8 @@ set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, {
-  auth_methods: ['publickey'],
-  keys: ['/home/ec2-user/.ssh/my-key-pair.pem'],  # 絶対パスを指定
-  user: 'ec2-user',    # 必要に応じてユーザー名を指定
-  forward_agent: true  # SSHエージェントを転送（必要な場合）
-}
+set :ssh_options, auth_methods: ['publickey'],
+keys: ['~/.ssh/my-key-pair.pem'] 
 
 
 # プロセス番号を記載したファイルの場所
