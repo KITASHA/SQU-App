@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
-  before_action :basic_auth
+  before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @topics = Topic.all
   end
@@ -11,7 +12,7 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
-      redirect_to topics_path, notice: 'Topic was successfully created.'
+      redirect_to topics_path
     else
       render :new
     end
@@ -28,9 +29,9 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:date, :news)
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+  def move_to_root
+    unless session[:authenticated]
+      redirect_to root_path
     end
   end
 end

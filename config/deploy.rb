@@ -18,6 +18,10 @@ set :rbenv_ruby, '3.2.0'
 set :ssh_options, auth_methods: ['publickey'],
 keys: ['~/.ssh/my-key-pair.pem'] 
 
+set :ssh_options, auth_methods: ['publickey'],
+keys: ['~/.ssh/id_rsa']
+
+
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 

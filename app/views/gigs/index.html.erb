@@ -16,7 +16,7 @@
 
     <div class="d-flex justify-content-between mt-4">
       <%= link_to "過去の出演はこちら", archive_gigs_path, class: "btn btn-secondary" %>
-      <% if user_signed_in? %>
+      <% if session[:authenticated] %>
         <%= link_to "イベント情報の追加", new_gig_path, class: "btn btn-primary" %>
       <% end %>
     </div>

@@ -9,7 +9,7 @@
     <% else %>
       <p>No bands available.</p>
     <% end %>
-    <% if user_signed_in? %>
+    <% if session[:authenticated] %>
       <div class="d-flex justify-content-end mt-4">
         <%= link_to "バンド登録", new_band_path, class: "btn btn-primary" %>
       </div>

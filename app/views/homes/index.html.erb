@@ -9,13 +9,15 @@
         初心者、経験者、とにかくだれもが簡単にアカペラを
       </p>
       <p>
-        <%= link_to about_home_path, class: "btn btn-primary my-2" do %>SQUAREをもっと知る
-        <% end %>
-        <% if user_signed_in? %>
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-secondary my-2" %>
-        <% else %>
-          <%= link_to "会員用ページはこちら", new_user_session_path, class: "btn btn-secondary my-2" %>
-        <% end %>
+          <%= link_to "SQUAREをもっと知る", about_home_path, class: "btn btn-primary my-2" %>
+<% if session[:authenticated] %>
+  <!-- ログインしている場合 -->
+  <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-secondary my-2" %>
+  
+<% else %>
+  <!-- ログインしていない場合 -->
+<%= link_to "会員用ページはこちら", login_path, class: "btn btn-secondary my-2" %>
+<% end %>
       </p>
     </div>
     
@@ -94,9 +96,7 @@
           </a>
         </div>
       </div>
-      
-      
-      <% if user_signed_in? %>
+      <% if session[:authenticated] %>
         <div class="col">
           <div class="card shadow-sm">
             <a href="#">
@@ -129,7 +129,7 @@
             </a>
           </div>
         </div>
-      <% end %>
+        <% end %>
     </div>
   </div>
 </div>

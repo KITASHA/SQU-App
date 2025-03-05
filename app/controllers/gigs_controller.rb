@@ -1,6 +1,6 @@
 class GigsController < ApplicationController
-  before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_gig, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @gigs = Gig.includes(:bands).where('date >= ?', Date.today).order(date: :asc)
@@ -17,7 +17,6 @@ class GigsController < ApplicationController
 
   def create
     @gig = Gig.new(gig_params)
-    @gig.user_id = current_user.id
     @bands = Band.all 
   
     if @gig.save
@@ -54,18 +53,17 @@ class GigsController < ApplicationController
     @gig = Gig.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     Rails.logger.warn "Gig not found with id: #{params[:id]}. Redirecting to index."
-    redirect_to gigs_path, alert: "イベントが見つかりませんでした。"
+    redirect_to gigs_path
   end 
 
   def gig_params
     params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :location, :description, :link_name, :link_url, :image, band_ids: [])
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+  def move_to_root
+    unless session[:authenticated]
+      redirect_to root_path
     end
   end
-  
   
 end

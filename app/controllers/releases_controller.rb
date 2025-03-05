@@ -1,6 +1,6 @@
 class ReleasesController < ApplicationController
-  before_action :basic_auth
   before_action :set_release, only: [:show, :edit, :update, :destroy, :toggle_selected]
+  before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     if Release.exists?
@@ -67,9 +67,9 @@ class ReleasesController < ApplicationController
     @release = Release.find(params[:id])
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+  def move_to_root
+    unless session[:authenticated]
+      redirect_to root_path
     end
   end
 end

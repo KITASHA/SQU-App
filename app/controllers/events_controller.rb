@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :basic_auth, only: [:new, :create, :destroy]
+  before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @events = Event.all
@@ -30,9 +30,9 @@ class EventsController < ApplicationController
     params.require(:event).permit(:date, :start_time, :finish_time, :location)
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+  def move_to_root
+    unless session[:authenticated]
+      redirect_to root_path
     end
   end
   

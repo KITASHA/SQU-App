@@ -1,7 +1,6 @@
 class BandsController < ApplicationController
-  before_action :basic_auth, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_band, only: [:show, :edit, :update, :destroy]
-
+  before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
   def index
     @bands = Band.all
   end
@@ -55,10 +54,11 @@ class BandsController < ApplicationController
       :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :link_name_4, :link_url_4, :image)
   end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER_SQUARE'] && password == ENV['BASIC_AUTH_PASSWORD_SQUARE']
+  def move_to_root
+    # セッションに保存された認証情報をチェック
+    unless session[:authenticated]
+      redirect_to root_path
     end
   end
-  
+
 end

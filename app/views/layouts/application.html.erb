@@ -33,7 +33,7 @@
       <div class="row">
         <!-- 左カラム：ユーザー情報とニュース -->
         <div class="col-sm-8 col-md-7 py-4">
-          <h4>Welcome! <% if user_signed_in? %><%= current_user.name %>さん<% end %></h4>
+          <h4>Welcome! </h4>
           <p class="text-body-secondary">NEWS</p>
           <ul>
             <% @topics&.each do |topic| %> 
@@ -79,7 +79,12 @@
     </div>
   </nav>
 </header>
-
+  <% if flash.any? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= flash[:alert] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
 
     <%= yield %>
 <!-- admax -->

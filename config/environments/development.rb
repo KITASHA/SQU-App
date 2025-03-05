@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # アップロードされたファイルをS3に保存
-  config.active_storage.service = :amazon
+  config.active_storage.service = :local
 
   # メール送信に関するエラーを無視
   config.action_mailer.raise_delivery_errors = false

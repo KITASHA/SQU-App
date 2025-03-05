@@ -28,7 +28,6 @@
 
 <div class="col-md-12">
   <h2 class="featurette-heading fw-normal lh-1">体験・見学可能日</h2>
-  <%# 元の記載はdrill.rbに %>
 <table class="table table-striped">
 <thead>
   <tr>
@@ -46,14 +45,14 @@
       <td><%= event.start_time.present? ? event.start_time.strftime("%H:%M") : "時間未設定" %></td>
       <td><%= event.finish_time.present? ? event.finish_time.strftime("%H:%M") : "時間未設定" %></td>
       <td><%= event.location %></td>
-      <% if user_signed_in? %>
+      <% if session[:authenticated] %>
       <td><%= link_to '削除', event_path(event.id), data: { turbo_method: :delete }, class: 'btn btn-danger' %></td>
       <% end %>
     </tr>
   <% end %>
 </tbody>
 </table>
-  <% if user_signed_in? %>
+  <% if session[:authenticated] %>
       <%= link_to '登録', new_event_path, class: 'btn btn-primary' %>
 <% end %>
 </div>

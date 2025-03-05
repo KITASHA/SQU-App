@@ -58,7 +58,7 @@
       <div class="d-flex justify-content-end">
         <div>
           <%= link_to "バンド一覧に戻る", bands_path, class: "btn btn-primary mr-2" %>
-          <% if user_signed_in? && current_user.id == @band.user_id %>
+          <% if session[:authenticated] %>
             <%= link_to "編集", edit_band_path(@band), class: "btn btn-primary mr-2" %>
             <%= link_to '削除', band_path(@band), data: { turbo_method: :delete}, class: "btn btn-danger", id: "delete_alert" %>
           <% end %>

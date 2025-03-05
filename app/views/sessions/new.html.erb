@@ -1,0 +1,28 @@
+<div class="container"style="padding-top: 5rem;">
+  <div class="row justify-content-center" >
+    <h1 class="text-center my-5">会員専用ページへアクセス</h1>
+    <p class="text-center mt-4">
+        <strong>ここより先はSQUARE会員専用ページです。</strong>
+      </p>
+    <div class="col-md-6">
+      <%= form_with url: login_path, method: :post, local: true, class: "bg-light p-4 rounded shadow-sm" do |form| %>
+        <div class="mb-3">
+          <%= form.label :password, "パスワード", class: "form-label" %>
+          <%= form.password_field :password, class: "form-control" %>
+
+          <!-- エラーメッセージを表示 -->
+          <% if flash.now[:alert] %>
+            <div class="text-danger mt-2">
+              <%= flash.now[:alert] %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="d-grid">
+          <%= form.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

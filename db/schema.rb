@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_05_040818) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -59,12 +59,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
     t.string "link_url_3"
     t.string "link_name_4"
     t.string "link_url_4"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_bands_on_slug", unique: true
-    t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
   create_table "embeddings", charset: "utf8mb3", force: :cascade do |t|
@@ -100,11 +98,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
     t.text "description", null: false
     t.string "link_name"
     t.string "link_url"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
-    t.index ["user_id"], name: "index_gigs_on_user_id"
   end
 
   create_table "parts", charset: "utf8mb3", force: :cascade do |t|
@@ -143,7 +139,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -155,9 +150,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bands", "users"
   add_foreign_key "gig_bands", "bands"
   add_foreign_key "gig_bands", "gigs"
-  add_foreign_key "gigs", "users"
   add_foreign_key "parts", "users"
 end
