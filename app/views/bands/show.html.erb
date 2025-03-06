@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container">
   <div class="row" style="padding-top: 5rem;">
     <!-- 左半分に写真 -->
     <div class="col-md-6">
@@ -10,27 +10,27 @@
     </div>
 
     <!-- 右半分にバンド情報 -->
-    <div class="col-md-6" style="height: 300px; background-size: cover; padding-top: 2rem;">
+    <div class="col-md-6" style="background-size: cover; padding-top: 2rem; display: flex; flex-direction: column; min-height: 300px;">
       <h2><%= @band.band_name %></h2>
 
       <!-- メンバー -->
       <div class="mt-4">
-      <% if (1..9).any? { |i| @band.send("member_#{i}").present? } %>
-        <h5>メンバー</h5>
-        <ul class="d-flex flex-wrap list-unstyled">
-          <% (1..9).each do |i| %>
-            <% member = @band.send("member_#{i}") %>
-            <% unless member.blank? %>
-              <li class="me-3"><%= member.strip %></li>
+        <% if (1..9).any? { |i| @band.send("member_#{i}").present? } %>
+          <h5>メンバー</h5>
+          <ul class="d-flex flex-wrap list-unstyled">
+            <% (1..9).each do |i| %>
+              <% member = @band.send("member_#{i}") %>
+              <% unless member.blank? %>
+                <li class="me-3"><%= member.strip %></li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>No members available.</p>
-      <% end %>
+          </ul>
+        <% else %>
+          <p>No members available.</p>
+        <% end %>
       </div>
 
-      <!-- 説明 -->
+      <!-- バンド紹介 -->
       <div class="mt-4">
         <h5>バンド紹介</h5>
         <p><%= @band.description %></p>
@@ -49,20 +49,14 @@
           <% end %>
         </ul>
       </div>
-    </div>
-  </div>
 
-  <!-- 編集・削除ボタン -->
-  <div class="row justify-content-end mt-4">
-    <div class="col-md-6">
-      <div class="d-flex justify-content-end">
-        <div>
-          <%= link_to "バンド一覧に戻る", bands_path, class: "btn btn-primary mr-2" %>
-          <% if session[:authenticated] %>
-            <%= link_to "編集", edit_band_path(@band), class: "btn btn-primary mr-2" %>
-            <%= link_to '削除', band_path(@band), data: { turbo_method: :delete}, class: "btn btn-danger", id: "delete_alert" %>
-          <% end %>
-        </div>
+      <!-- ボタン群 -->
+      <div class="d-flex justify-content-end mt-4">
+        <%= link_to "バンド一覧に戻る", bands_path, class: "btn btn-primary me-2" %>
+        <% if session[:authenticated] %>
+          <%= link_to "編集", edit_band_path(@band), class: "btn btn-primary me-2" %>
+          <%= link_to '削除', band_path(@band), data: { turbo_method: :delete }, class: "btn btn-danger", id: "delete_alert" %>
+        <% end %>
       </div>
     </div>
   </div>
