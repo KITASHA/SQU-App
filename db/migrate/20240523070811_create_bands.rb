@@ -20,7 +20,6 @@ class CreateBands < ActiveRecord::Migration[7.0]
       t.string :link_url_3
       t.string :link_name_4
       t.string :link_url_4
-      t.references :user, null: false, foreign_key: true 
 
       t.timestamps
     end
