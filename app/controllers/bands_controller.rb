@@ -10,7 +10,7 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = current_user.bands.build(band_params)
+    @band = build(band_params)
 
     if @band.save
       redirect_to @band, notice: 'バンドが登録されました。'
