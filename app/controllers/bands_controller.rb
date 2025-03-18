@@ -10,10 +10,10 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = build(band_params)
+    @band = Band.new(band_params)
 
     if @band.save
-      redirect_to @band, notice: 'バンドが登録されました。'
+      redirect_to @band
     else
       render :new
     end
@@ -44,7 +44,7 @@ class BandsController < ApplicationController
     @band = Band.friendly.find(params[:slug])
   rescue ActiveRecord::RecordNotFound
     Rails.logger.warn "Band not found with slug: #{params[:slug]}. Redirecting to index."
-    redirect_to bands_path, alert: "指定されたバンドが見つかりませんでした。"
+    redirect_to bands_path
   end
 
   private
