@@ -12,7 +12,7 @@
       <p class="lead"><%= selected_release.body.gsub("\n", "<br>").html_safe %></p>
 
       <% if selected_release.form_url.present? %>
-        <a href="<%= selected_release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;">申し込みフォームへ</a>
+        <a href="<%= selected_release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;">アンケートに回答する</a>
       <% end %>
     </div>
 
