@@ -1,1 +1,7 @@
-server '13.231.88.235', user: 'ec2-user', roles: %w{app db web}
+server "54.249.128.34", user: "ubuntu", roles: %w{app db web}
+
+set :ssh_options, {
+  keys: %w(/home/kitagawa/.ssh/LightsailDefaultKey-ap-northeast-1.pem),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}

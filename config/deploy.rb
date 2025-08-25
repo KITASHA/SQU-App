@@ -15,22 +15,18 @@ set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
-keys: ['~/.ssh/my-key-pair.pem'] 
+set :ssh_options, {
+  auth_methods: ['publickey'],
+  keys: ['~/.ssh/LightsailDefaultKey-ap-northeast-1.pem']
+}
 
-
-# プロセス番号を記載したファイルの場所
-set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
-
-# Unicornの設定ファイルの場所
-set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
-set :keep_releases, 5
-
-# デプロイ処理が終わった後、Unicornを再起動するための記述
+# デプロイ処理が終わった後、Pumaを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:restart'
+    on roles(:app) do
+      execute :sudo, :systemctl, "restart squ-app"
+    end
   end
 end
 

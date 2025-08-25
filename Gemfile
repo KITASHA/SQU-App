@@ -54,7 +54,6 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -73,14 +72,6 @@ group :test do
   gem "capybara"
   gem "webdrivers"
   gem 'selenium-webdriver'
-end
-
-group :development do
-  gem 'rubocop', require: false
-end
-
-group :production do
-  gem 'unicorn', '6.1.0'
 end
 
 gem 'friendly_id', '~> 5.4'
