@@ -20,15 +20,20 @@ set :ssh_options, {
   keys: ['~/.ssh/LightsailDefaultKey-ap-northeast-1.pem']
 }
 
-# デプロイ処理が終わった後、Pumaを再起動するための記述
-after 'deploy:publishing', 'deploy:restart'
+# デプロイ後に Puma を systemd 経由で再起動
 namespace :deploy do
+  desc 'Restart Puma via systemd'
   task :restart do
     on roles(:app) do
-      execute :sudo, :systemctl, "restart squ-app"
+      # systemd ユニット名に合わせてください
+      execute :sudo, :systemctl, 'restart SQU-App.service'
     end
   end
+
+  # デプロイ後に restart タスクを自動で呼ぶ
+  after :publishing, :restart
 end
+
 
 namespace :deploy do
   task :migrate do
