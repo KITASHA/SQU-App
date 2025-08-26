@@ -34,7 +34,6 @@ namespace :deploy do
   after :publishing, :restart
 end
 
-
 namespace :deploy do
   task :migrate do
     on roles(:app) do
@@ -42,3 +41,7 @@ namespace :deploy do
     end
   end
 end
+
+set :default_env, {
+  'SECRET_KEY_BASE' => ENV['SECRET_KEY_BASE']
+}
