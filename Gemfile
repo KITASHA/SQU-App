@@ -84,5 +84,6 @@ gem 'image_processing', '~> 1.2'
 gem 'aws-sdk-s3'
 gem 'httparty'
 gem 'dotenv-rails', groups: [:development, :test]
-gem install ed25519 -v "~> 1.2"
-gem install bcrypt_pbkdf -v "~> 1.0"
+gem 'ed25519', '~> 1.2'
+gem 'bcrypt_pbkdf', '~> 1.0'
+
