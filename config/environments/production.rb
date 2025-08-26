@@ -57,4 +57,8 @@ Rails.application.configure do
   
   # 非推奨警告のログ出力を無効にする
   config.active_support.report_deprecations = false
+
+  # master.key がなくても環境変数から secret_key_base を設定
+Rails.application.config.secret_key_base ||= ENV['SECRET_KEY_BASE']
+
 end
