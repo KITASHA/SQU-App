@@ -26,9 +26,18 @@ set :ssh_options, {
 set :linked_files, fetch(:linked_files, []).push('.env')
 
 # shared/.env を読み込んで environment に渡す
-set :default_env, {
-  'SECRET_KEY_BASE' => File.read("#{shared_path}/.env").match(/SECRET_KEY_BASE=(.+)/)[1].strip,
-  'RAILS_ENV' => 'production'
+set :default_env, -> {
+  env_hash = {}
+  on roles(:app) do
+    # サーバー上の shared/.env を読む
+    result = capture("cat #{shared_path}/.env")
+    result.lines.each do |line|
+      next if line.strip.empty? || line.start_with?('#')
+      key, value = line.strip.split('=', 2)
+      env_hash[key] = value if key && value
+    end
+  end
+  env_hash
 }
 
 
