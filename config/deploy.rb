@@ -43,18 +43,13 @@ set :default_env, -> {
 
 # Puma 再起動
 namespace :deploy do
-  desc 'Restart Puma via systemd'
-  task :restart do
-    on roles(:app) do
-      execute :sudo, :systemctl, 'restart SQU-App.service'
-    end
-  end
-
-  after :publishing, :restart
-
   task :migrate do
     on roles(:app) do
-      execute "cd #{release_path} && RAILS_ENV=#{fetch(:rails_env)} bundle exec rails db:migrate"
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec rails db:migrate"
+        end
+      end
     end
   end
 end
