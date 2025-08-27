@@ -25,19 +25,12 @@ set :ssh_options, {
 # linked_files に .env を追加
 set :linked_files, fetch(:linked_files, []).push('.env')
 
-# shared/.env を読み込む
-set :default_env, -> {
-  env_file = "#{shared_path}/.env"
-  env_hash = {}
-  if File.exist?(env_file)
-    File.readlines(env_file).each do |line|
-      next if line.strip.empty? || line.start_with?('#')
-      key, value = line.strip.split('=', 2)
-      env_hash[key] = value if key && value
-    end
-  end
-  env_hash
+# shared/.env を読み込んで environment に渡す
+set :default_env, {
+  'SECRET_KEY_BASE' => File.read("#{shared_path}/.env").match(/SECRET_KEY_BASE=(.+)/)[1].strip,
+  'RAILS_ENV' => 'production'
 }
+
 
 # Puma 再起動
 namespace :deploy do
@@ -56,3 +49,4 @@ namespace :deploy do
     end
   end
 end
+
