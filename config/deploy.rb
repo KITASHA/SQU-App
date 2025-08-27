@@ -41,7 +41,3 @@ namespace :deploy do
     end
   end
 end
-
-set :default_env, {
-  'SECRET_KEY_BASE' => ENV['SECRET_KEY_BASE']
-}
