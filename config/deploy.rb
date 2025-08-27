@@ -42,6 +42,8 @@ namespace :deploy do
   end
 end
 
+# shared 配下の .env を読み込む
 set :default_env, {
-  'SECRET_KEY_BASE' => ENV['SECRET_KEY_BASE']
+  'SECRET_KEY_BASE' => File.read("#{shared_path}/.env").match(/SECRET_KEY_BASE=(.+)/)[1].strip,
+  'RAILS_ENV' => 'production'
 }
