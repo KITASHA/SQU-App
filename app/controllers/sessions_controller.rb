@@ -4,7 +4,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:password] == ENV["SESSION_PASSWORD"]  # 一律のパスワードを設定
+    if
+      params[:password] == 1101  # 一律のパスワードを設定 
+      # params[:password] == ENV["SESSION_PASSWORD"]  # 一律のパスワードを設定
       session[:authenticated] = true  # 認証成功時にセッションにフラグを保存
       redirect_to root_path, notice: "アクセスが許可されました。"
     else
