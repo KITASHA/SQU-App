@@ -32,3 +32,4 @@
 .Ds_Store
 config.json
 .env
+/config/credentials/production.key

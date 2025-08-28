@@ -29,7 +29,6 @@ set :linked_files, fetch(:linked_files, []).push('.env')
 set :default_env, -> {
   env_hash = {}
   on roles(:app) do
-    # サーバー上の shared/.env を読む
     result = capture("cat #{shared_path}/.env")
     result.lines.each do |line|
       next if line.strip.empty? || line.start_with?('#')
@@ -40,9 +39,8 @@ set :default_env, -> {
   env_hash
 }
 
-
-# Puma 再起動
 namespace :deploy do
+  desc 'Run database migrations'
   task :migrate do
     on roles(:app) do
       within release_path do
@@ -52,5 +50,16 @@ namespace :deploy do
       end
     end
   end
-end
 
+  desc 'Restart Puma'
+  task :restart_puma do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, "exec pumactl -S tmp/pids/puma.state restart"
+      end
+    end
+  end
+
+  after :publishing, :restart_puma
+  after :finishing, 'deploy:cleanup'
+end
