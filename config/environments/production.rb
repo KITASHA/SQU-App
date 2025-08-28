@@ -27,7 +27,7 @@ Rails.application.configure do
   config.assets.debug = false
 
   # アップロードされたファイルをS3に保存
-  config.active_storage.service = :amazon
+  config.active_storage.service = :local
 
   # ログの出力レベルを情報に設定
   config.log_level = :debug
