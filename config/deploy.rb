@@ -1,3 +1,44 @@
+# capistranoのバージョン固定
+lock '3.19.1'
+
+# アプリ情報
+set :application, 'SQU-App'
+set :repo_url, 'git@github.com:KITASHA/SQU-App.git'
+set :branch, 'main'
+
+# 共通ディレクトリ
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 
+  'vendor/bundle', 'public/system', 'public/uploads'
+)
+
+# rbenv
+set :rbenv_type, :user
+set :rbenv_ruby, '3.2.0'
+
+# SSH
+set :ssh_options, {
+  auth_methods: ['publickey'],
+  keys: ['~/.ssh/LightsailDefaultKey-ap-northeast-1.pem']
+}
+
+# linked_files に .env を追加
+set :linked_files, fetch(:linked_files, []).push('.env')
+
+# shared/.env を読み込んで environment に渡す
+set :default_env, -> {
+  env_hash = {}
+  on roles(:app) do
+    result = capture("cat #{shared_path}/.env")
+    result.lines.each do |line|
+      next if line.strip.empty? || line.start_with?('#')
+      key, value = line.strip.split('=', 2)
+      env_hash[key] = value if key && value
+    end
+  end
+  env_hash
+}
+
 namespace :deploy do
   desc 'Run database migrations'
   task :migrate do
@@ -9,22 +50,21 @@ namespace :deploy do
       end
     end
   end
+desc 'Restart Puma'
+task :restart_puma do
+  on roles(:app) do
+    within current_path do
+      state_file = "#{shared_path}/tmp/pids/puma.state"
+      puma_config = "#{shared_path}/puma.rb"
 
-  desc 'Restart Puma'
-  task :restart_puma do
-    on roles(:app) do
-      within current_path do
-        state_file = "#{shared_path}/tmp/pids/puma.state"
-        puma_config = "#{shared_path}/puma.rb"
-
-        if test("[ -f #{state_file} ]")
-          execute :bundle, "exec pumactl -S #{state_file} restart"
-        else
-          execute :bundle, "exec pumactl -C #{puma_config} start"
-        end
+      if test("[ -f #{state_file} ]")
+        execute :bundle, "exec pumactl -S #{state_file} restart"
+      else
+        execute :bundle, "exec pumactl -C #{puma_config} start"
       end
     end
   end
+end
 
   after :publishing, :restart_puma
   after :finishing, 'deploy:cleanup'
