@@ -51,15 +51,21 @@ namespace :deploy do
     end
   end
 
+# Puma 再起動タスク
+namespace :deploy do
   desc 'Restart Puma'
   task :restart_puma do
     on roles(:app) do
       within current_path do
-        execute :bundle, "exec pumactl -S tmp/pids/puma.state restart"
+        # state ファイルがあるかチェック
+        if test("[ -f #{shared_path}/tmp/pids/puma.state ]")
+          execute :bundle, "exec pumactl -S #{shared_path}/tmp/pids/puma.state restart"
+        else
+          execute :bundle, "exec pumactl -C #{shared_path}/puma.rb start"
+        end
       end
     end
   end
 
   after :publishing, :restart_puma
-  after :finishing, 'deploy:cleanup'
 end
