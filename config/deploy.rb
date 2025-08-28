@@ -1,4 +1,4 @@
-# capistranoのバージョン固定
+# Capistranoのバージョン固定
 lock '3.19.1'
 
 # アプリ情報
@@ -6,9 +6,9 @@ set :application, 'SQU-App'
 set :repo_url, 'git@github.com:KITASHA/SQU-App.git'
 set :branch, 'main'
 
-# 共通ディレクトリ
+# 共通ディレクトリ（デプロイごとに消えない）
 set :linked_dirs, fetch(:linked_dirs, []).push(
-  'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 
+  'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
   'vendor/bundle', 'public/system', 'public/uploads'
 )
 
@@ -29,7 +29,7 @@ set :linked_files, fetch(:linked_files, []).push('.env')
 set :default_env, -> {
   env_hash = {}
   on roles(:app) do
-    result = capture("cat #{shared_path}/.env")
+    result = capture("cat #{shared_path}/.env || true") # .env が無くてもエラーにならない
     result.lines.each do |line|
       next if line.strip.empty? || line.start_with?('#')
       key, value = line.strip.split('=', 2)
@@ -50,22 +50,26 @@ namespace :deploy do
       end
     end
   end
-desc 'Restart Puma'
-task :restart_puma do
-  on roles(:app) do
-    within current_path do
-      state_file = "#{shared_path}/tmp/pids/puma.state"
-      puma_config = "#{shared_path}/puma.rb"
 
-      if test("[ -f #{state_file} ]")
-        execute :bundle, "exec pumactl -S #{state_file} restart"
-      else
-        execute :bundle, "exec pumactl -C #{puma_config} start"
+  desc 'Restart Puma'
+  task :restart_puma do
+    on roles(:app) do
+      within current_path do
+        state_file = "#{shared_path}/tmp/pids/puma.state"
+        puma_config = "#{shared_path}/puma.rb"
+
+        if test("[ -f #{state_file} ]")
+          # Puma が既に動作中なら restart
+          execute :bundle, "exec pumactl -S #{state_file} restart"
+        else
+          # 起動していなければ start
+          execute :bundle, "exec pumactl -C #{puma_config} start"
+        end
       end
     end
   end
-end
 
+  # 自動フック
   after :publishing, :restart_puma
   after :finishing, 'deploy:cleanup'
 end
