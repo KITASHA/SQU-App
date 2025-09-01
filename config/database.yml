@@ -28,4 +28,3 @@ production:
   username: squuser
   password: <%= ENV['DB_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
-  port: 3306
