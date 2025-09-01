@@ -87,3 +87,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'ed25519', '~> 1.2'
 gem 'bcrypt_pbkdf', '~> 1.0'
 
+group :production do
+  gem 'unicorn', '6.1.0'
+end
+
