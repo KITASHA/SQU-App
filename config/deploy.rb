@@ -50,28 +50,4 @@ namespace :deploy do
       end
     end
   end
-
-  desc 'Restart Puma'
-task :restart_puma do
-  on roles(:app) do
-    within current_path do
-      puma_config = "#{shared_path}/puma.rb"
-      state_file  = "#{shared_path}/tmp/pids/puma.state"
-      pid_file    = "#{shared_path}/tmp/pids/puma.pid"
-
-      # 既存の Puma を止める（state_file が壊れていても止める）
-      if test("[ -f #{pid_file} ]")
-        execute :bundle, "exec pumactl -F #{puma_config} stop || true"
-      end
-
-      # 新規起動
-      execute :bundle, "exec pumactl -C #{puma_config} start"
-    end
-  end
-end
-
-
-  # 自動フック
-  after :publishing, :restart_puma
-  after :finishing, 'deploy:cleanup'
 end
