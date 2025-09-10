@@ -11,7 +11,7 @@ working_directory "/var/www/SQU-App/current"
 pid "#{app_path}/tmp/pids/unicorn.pid"
 
 #ポート番号を指定
-listen 3000
+listen "/var/www/SQU-App/shared/sockets/unicorn.sock", backlog: 64
 
 #エラーのログを記録するファイルを指定
 stderr_path "#{app_path}/log/unicorn.stderr.log"
