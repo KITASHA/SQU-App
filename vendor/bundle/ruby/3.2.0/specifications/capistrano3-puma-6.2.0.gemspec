@@ -15,10 +15,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.post_install_message = "\n    Version 6.0.0 is a major release. Please see README.md, breaking changes are listed in CHANGELOG.md\n  ".freeze
   s.required_ruby_version = Gem::Requirement.new(">= 2.5".freeze)
-  s.rubygems_version = "3.4.20".freeze
+  s.rubygems_version = "3.4.1".freeze
   s.summary = "Puma integration for Capistrano".freeze
 
-  s.installed_by_version = "3.4.20" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.1" if s.respond_to? :installed_by_version
 
   s.specification_version = 4
 

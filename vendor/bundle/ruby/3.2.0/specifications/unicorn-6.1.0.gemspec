@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.homepage = "https://yhbt.net/unicorn/".freeze
   s.licenses = ["GPL-2.0+".freeze, "Ruby-1.8".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.0.0".freeze)
-  s.rubygems_version = "3.4.20".freeze
+  s.rubygems_version = "3.4.1".freeze
   s.summary = "Rack HTTP server for fast clients and Unix".freeze
 
-  s.installed_by_version = "3.4.20" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.1" if s.respond_to? :installed_by_version
 
   s.specification_version = 4
 

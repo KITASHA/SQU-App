@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
   s.email = ["shatrov@me.com".freeze, "yamashita@geishatokyo.com".freeze]
   s.homepage = "https://github.com/capistrano/rbenv".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.20".freeze
+  s.rubygems_version = "3.4.1".freeze
   s.summary = "rbenv integration for Capistrano".freeze
 
-  s.installed_by_version = "3.4.20" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.1" if s.respond_to? :installed_by_version
 
   s.specification_version = 4
 

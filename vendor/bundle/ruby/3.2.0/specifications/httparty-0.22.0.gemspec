@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.post_install_message = "When you HTTParty, you must party hard!".freeze
   s.required_ruby_version = Gem::Requirement.new(">= 2.7.0".freeze)
-  s.rubygems_version = "3.4.20".freeze
+  s.rubygems_version = "3.4.1".freeze
   s.summary = "Makes http fun! Also, makes consuming restful web services dead easy.".freeze
 
-  s.installed_by_version = "3.4.20" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.1" if s.respond_to? :installed_by_version
 
   s.specification_version = 4
 

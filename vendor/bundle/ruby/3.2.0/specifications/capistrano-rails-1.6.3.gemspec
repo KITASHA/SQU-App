@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
   s.email = ["seenmyfate@gmail.com".freeze, "lee.hambley@gmail.com".freeze, "shatrov@me.com".freeze]
   s.homepage = "https://github.com/capistrano/rails".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.4.20".freeze
+  s.rubygems_version = "3.4.1".freeze
   s.summary = "Rails specific Capistrano tasks".freeze
 
-  s.installed_by_version = "3.4.20" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.1" if s.respond_to? :installed_by_version
 
   s.specification_version = 4
 
