@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.0"
+ruby "3.2.3"
 
 # 最新のRailsを使用する場合: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '7.2.1'
@@ -48,8 +48,7 @@ gem "sassc-rails"
 # Active Storageで画像の変換を行う [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+group :development do
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
@@ -83,7 +82,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'aws-sdk-s3'
 gem 'httparty'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test, :production]
 gem 'ed25519', '~> 1.2'
 gem 'bcrypt_pbkdf', '~> 1.0'
 
