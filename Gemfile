@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.3"
+ruby "3.2.0"
 
 # 最新のRailsを使用する場合: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '7.2.1'
