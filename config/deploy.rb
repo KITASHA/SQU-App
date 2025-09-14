@@ -1,4 +1,4 @@
-# Capistranoのバージョン固定
+# Capistrano のバージョン固定
 lock '3.19.1'
 
 # アプリ情報
@@ -15,8 +15,14 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 # rbenv
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
+set :rbenv_map_bins, %w{rake gem bundle ruby rails puma sidekiq}
+set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 
-# SSH
+# bundle 設定
+set :bundle_flags, '--deployment --quiet'
+set :bundle_without, %w{development test}.join(' ')
+
+# SSH 設定
 set :ssh_options, {
   auth_methods: ['publickey'],
   keys: ['~/.ssh/LightsailDefaultKey-ap-northeast-1.pem']
@@ -29,7 +35,7 @@ set :linked_files, fetch(:linked_files, []).push('.env')
 set :default_env, -> {
   env_hash = {}
   on roles(:app) do
-    result = capture("cat #{shared_path}/.env || true") # .env が無くてもエラーにならない
+    result = capture("cat #{shared_path}/.env || true")
     result.lines.each do |line|
       next if line.strip.empty? || line.start_with?('#')
       key, value = line.strip.split('=', 2)
