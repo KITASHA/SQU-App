@@ -6,10 +6,10 @@ set :application, 'SQU-App'
 set :repo_url, 'git@github.com:KITASHA/SQU-App.git'
 set :branch, 'main'
 
-# 共通ディレクトリ（デプロイごとに消えない）
+# 共通ディレクトリ（リリースごとに消えない）
 set :linked_dirs, fetch(:linked_dirs, []).push(
   'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
-  'vendor/bundle', 'public/system', 'public/uploads','public/assets' 
+  'vendor/bundle', 'public/system', 'public/uploads'
 )
 
 # rbenv
@@ -59,6 +59,18 @@ namespace :yarn do
   end
 end
 before 'deploy:assets:precompile', 'yarn:install'
+
+# デプロイ前に古い assets を削除
+namespace :deploy do
+  task :clear_assets do
+    on roles(:web) do
+      within release_path do
+        execute :rm, '-rf', 'public/assets'
+      end
+    end
+  end
+  before 'deploy:assets:precompile', 'deploy:clear_assets'
+end
 
 # データベースマイグレーション
 namespace :deploy do
