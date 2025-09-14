@@ -48,20 +48,9 @@ set :default_env, -> {
   })
 }
 
-# デプロイ前に yarn install
-namespace :yarn do
-  task :install do
-    on roles(:web) do
-      within release_path do
-        execute "yarn install --silent --no-progress --production"
-      end
-    end
-  end
-end
-before 'deploy:assets:precompile', 'yarn:install'
-
-# デプロイ前に古い assets を削除
+# デプロイ前処理
 namespace :deploy do
+  # 古い assets を削除
   task :clear_assets do
     on roles(:web) do
       within release_path do
@@ -69,7 +58,6 @@ namespace :deploy do
       end
     end
   end
-  before 'deploy:assets:precompile', 'deploy:clear_assets'
 
   # プリコンパイル用の空ディレクトリを作成
   task :prepare_assets_dirs do
@@ -80,11 +68,11 @@ namespace :deploy do
       execute :touch, "#{release_path}/app/assets/images/.keep"
     end
   end
-  before 'deploy:assets:precompile', 'deploy:prepare_assets_dirs'
-end
 
-# データベースマイグレーション
-namespace :deploy do
+  before 'deploy:assets:precompile', 'deploy:clear_assets'
+  before 'deploy:assets:precompile', 'deploy:prepare_assets_dirs'
+
+  # DB マイグレーション
   desc 'Run database migrations'
   task :migrate do
     on roles(:app) do
