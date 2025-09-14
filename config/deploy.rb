@@ -70,6 +70,17 @@ namespace :deploy do
     end
   end
   before 'deploy:assets:precompile', 'deploy:clear_assets'
+
+  # プリコンパイル用の空ディレクトリを作成
+  task :prepare_assets_dirs do
+    on roles(:app) do
+      execute :mkdir, '-p', "#{release_path}/app/assets/javascripts"
+      execute :touch, "#{release_path}/app/assets/javascripts/.keep"
+      execute :mkdir, '-p', "#{release_path}/app/assets/images"
+      execute :touch, "#{release_path}/app/assets/images/.keep"
+    end
+  end
+  before 'deploy:assets:precompile', 'deploy:prepare_assets_dirs'
 end
 
 # データベースマイグレーション
