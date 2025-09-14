@@ -36,9 +36,25 @@ set :default_env, -> {
       env_hash[key] = value if key && value
     end
   end
-  env_hash
+  env_hash.merge({
+    'PATH' => "/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:$PATH",
+    'NODE_ENV' => 'production'
+  })
 }
 
+# デプロイ前に yarn install
+namespace :yarn do
+  task :install do
+    on roles(:web) do
+      within release_path do
+        execute "yarn install --silent --no-progress --production"
+      end
+    end
+  end
+end
+before 'deploy:assets:precompile', 'yarn:install'
+
+# データベースマイグレーション
 namespace :deploy do
   desc 'Run database migrations'
   task :migrate do
@@ -51,3 +67,7 @@ namespace :deploy do
     end
   end
 end
+
+# Railsアセットプリコンパイルを有効
+set :assets_roles, [:web, :app]
+set :rails_env, 'production'
