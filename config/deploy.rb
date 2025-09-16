@@ -15,7 +15,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 # rbenv
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
-set :rbenv_map_bins, %w{rake gem bundle ruby rails puma sidekiq}
+set :rbenv_map_bins, %w{rake gem bundle ruby rails puma unicorn sidekiq}
 set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 
 # bundle 設定
@@ -48,7 +48,10 @@ set :default_env, -> {
   })
 }
 
-# デプロイ前処理
+# Unicorn 設定
+set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
+set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
+
 namespace :deploy do
   # 古い assets を削除
   task :clear_assets do
@@ -85,6 +88,37 @@ namespace :deploy do
   end
 end
 
+namespace :unicorn do
+  desc 'Start Unicorn'
+  task :start do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, "exec unicorn -c #{fetch(:unicorn_config_path)} -E #{fetch(:rails_env)} -D"
+      end
+    end
+  end
+
+  desc 'Stop Unicorn'
+  task :stop do
+    on roles(:app) do
+      execute :kill, "-QUIT $(cat #{fetch(:unicorn_pid)}) || true"
+    end
+  end
+
+  desc 'Restart Unicorn'
+  task :restart do
+    on roles(:app) do
+      if test("[ -f #{fetch(:unicorn_pid)} ]")
+        invoke 'unicorn:stop'
+      end
+      invoke 'unicorn:start'
+    end
+  end
+end
+
 # Railsアセットプリコンパイルを有効
 set :assets_roles, [:web, :app]
 set :rails_env, 'production'
+
+# デプロイ後に Unicorn を再起動
+after 'deploy:publishing', 'unicorn:restart'
