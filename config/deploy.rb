@@ -101,14 +101,20 @@ namespace :unicorn do
 
   task :stop do
     on roles(:app) do
-      execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false
+      # PID ファイルが存在すればプロセスに QUIT シグナル
+      if test("[ -f #{pid_file} ]")
+        execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false
+      end
     end
   end
 
   task :restart do
     on roles(:app) do
+      # PID ファイルが存在してもプロセスが死んでいたら削除
       if test("[ -f #{pid_file} ]")
-        invoke 'unicorn:stop'
+        pid_alive = test("kill -0 $(cat #{pid_file}) > /dev/null 2>&1")
+        execute :rm, pid_file unless pid_alive
+        invoke 'unicorn:stop' if pid_alive
       end
       invoke 'unicorn:start'
     end
@@ -116,6 +122,7 @@ namespace :unicorn do
 end
 
 after 'deploy:publishing', 'unicorn:restart'
+
 
 
 # Railsアセットプリコンパイルを有効
