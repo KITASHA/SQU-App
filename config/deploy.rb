@@ -89,32 +89,34 @@ namespace :deploy do
 end
 
 namespace :unicorn do
-  desc 'Start Unicorn'
+  pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
+
   task :start do
     on roles(:app) do
       within current_path do
-        execute :bundle, "exec unicorn -c #{fetch(:unicorn_config_path)} -E #{fetch(:rails_env)} -D"
+        execute :bundle, "exec unicorn -c config/unicorn.rb -E production -D"
       end
     end
   end
 
-  desc 'Stop Unicorn'
   task :stop do
     on roles(:app) do
-      execute :kill, "-QUIT $(cat #{fetch(:unicorn_pid)}) || true"
+      execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false
     end
   end
 
-  desc 'Restart Unicorn'
   task :restart do
     on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
+      if test("[ -f #{pid_file} ]")
         invoke 'unicorn:stop'
       end
       invoke 'unicorn:start'
     end
   end
 end
+
+after 'deploy:publishing', 'unicorn:restart'
+
 
 # Railsアセットプリコンパイルを有効
 set :assets_roles, [:web, :app]
