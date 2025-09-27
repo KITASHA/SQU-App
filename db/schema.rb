@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_27_173414) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_27_191505) do
   create_table "active_storage_attachments", charset: "utf8mb3", collation: "utf8mb3_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -97,11 +97,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_27_173414) do
     t.time "start_time", null: false
     t.time "end_time"
     t.text "description", null: false
-    t.string "link_name"
-    t.string "link_url"
+    t.string "link_name_1"
+    t.string "link_url_1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+    t.string "link_name_2"
+    t.string "link_url_2"
+    t.string "link_name_3"
+    t.string "link_url_3"
   end
 
   create_table "releases", charset: "utf8mb3", collation: "utf8mb3_general_ci", force: :cascade do |t|

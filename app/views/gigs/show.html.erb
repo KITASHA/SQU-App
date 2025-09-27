@@ -44,11 +44,15 @@
       </div>
 
       <!-- リンク -->
-      <% if @gig.link_name.present? && @gig.link_url.present? %>
-        <div class="mb-3" style="font-size: 1.2em; font-weight: bold;">
-          <h4>[リンク]</h4>
-          <a href="<%= @gig.link_url %>" target="_blank"><%= @gig.link_name %></a>
-        </div>
+      <h4>リンク</h4>
+      <% (1..3).each do |i| %>
+        <% link_name = @gig.send("link_name_#{i}") %>
+        <% link_url  = @gig.send("link_url_#{i}") %>
+        <% if link_name.present? && link_url.present? %>
+          <div class="mb-3" style="font-size: 1.2em; font-weight: bold;">
+            <a href="<%= link_url %>" target="_blank"><%= link_name %></a>
+          </div>
+        <% end %>
       <% end %>
 
       <!-- 画像 -->

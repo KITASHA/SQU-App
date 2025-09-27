@@ -57,7 +57,7 @@ class GigsController < ApplicationController
   end 
 
   def gig_params
-    params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :location, :description, :link_name, :link_url, :image, band_ids: [])
+    params.require(:gig).permit(:gig_name, :date, :start_time, :end_time, :location, :description, :link_name_1, :link_url_1, :link_name_2, :link_url_2, :link_name_3, :link_url_3, :image, band_ids: [])
   end
 
   def move_to_root

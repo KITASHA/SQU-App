@@ -64,18 +64,19 @@
           <%= form.text_area :description, class: "form-control", required: true %>
         </div>
         
-        <!-- リンク入力欄 -->
-        <div id="links_container" class="mb-3">
-          <div class="row">
-            <div class="col-4">
-              <%= form.label :link_name, "リンク名", class: "form-label" %>
-              <%= form.text_field :link_name, class: "form-control" %>
+        <div class="mb-3" id="links_container">
+          <% (1..3).each do |i| %>
+            <div class="row mb-2">
+              <div class="col-md-4">
+                <%= form.label "link_name_#{i}", "リンク名", class: "form-label" %>
+                <%= form.text_field "link_name_#{i}", class: "form-control" %>
+              </div>
+              <div class="col-md">
+                <%= form.label "link_url_#{i}", "リンクURL", class: "form-label" %>
+                <%= form.text_field "link_url_#{i}", class: "form-control" %>
+              </div>
             </div>
-            <div class="col">
-              <%= form.label :link_url, "リンクURL", class: "form-label" %>
-              <%= form.text_field :link_url, class: "form-control" %>
-            </div>
-          </div>
+          <% end %>
         </div>
         
         <!-- 画像 -->
