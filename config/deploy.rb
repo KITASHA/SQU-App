@@ -55,6 +55,17 @@ set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 namespace :unicorn do
   pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
 
+  task :stop do
+    on roles(:app) do
+      if test("[ -f #{pid_file} ]")
+        # PID が生きていれば終了、死んでいれば削除
+        pid_alive = test("kill -0 $(cat #{pid_file}) > /dev/null 2>&1")
+        execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false if pid_alive
+        execute :rm, "-f #{pid_file}" unless pid_alive
+      end
+    end
+  end
+
   task :start do
     on roles(:app) do
       within current_path do
@@ -63,28 +74,13 @@ namespace :unicorn do
     end
   end
 
-  task :stop do
-    on roles(:app) do
-      if test("[ -f #{pid_file} ]")
-        pid_alive = test("kill -0 $(cat #{pid_file}) > /dev/null 2>&1")
-        execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false if pid_alive
-        execute :rm, "-f #{pid_file}" unless pid_alive
-      end
-    end
-  end
-
   task :restart do
     on roles(:app) do
-      # PID ファイルが残っている場合は強制削除
-      if test("[ -f #{pid_file} ]")
-        execute :rm, "-f #{pid_file}"
-      end
+      invoke 'unicorn:stop'
       invoke 'unicorn:start'
     end
   end
 end
-
-after 'deploy:publishing', 'unicorn:restart'
 
 # Railsアセットプリコンパイルを有効
 set :assets_roles, [:web, :app]
