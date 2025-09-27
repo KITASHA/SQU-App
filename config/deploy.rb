@@ -53,32 +53,37 @@ set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 
 namespace :unicorn do
-  pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
-  socket_file = "#{shared_path}/sockets/unicorn.sock"
-
-  task :stop do
-    on roles(:app) do
-      if test("[ -f #{pid_file} ]")
-        pid_alive = test("kill -0 $(cat #{pid_file}) > /dev/null 2>&1")
-        execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false if pid_alive
-        execute :rm, "-f #{pid_file}" unless pid_alive
-      end
-      execute :rm, "-f #{socket_file}" if test("[ -f #{socket_file} ]")
-    end
-  end
-
+  desc "Start Unicorn"
   task :start do
     on roles(:app) do
+      # 古いソケットとPIDを削除
+      execute :rm, "-f #{shared_path}/tmp/pids/unicorn.pid"
+      execute :rm, "-f #{shared_path}/sockets/unicorn.sock"
+
+      # Unicorn 起動
       within current_path do
-        execute :bundle, "exec unicorn -c config/unicorn.rb -E production -D"
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec unicorn -c #{current_path}/config/unicorn.rb -E #{fetch(:rails_env)} -D"
+        end
       end
     end
   end
 
+  desc "Restart Unicorn"
   task :restart do
     on roles(:app) do
-      invoke 'unicorn:stop'
-      invoke 'unicorn:start'
+      invoke "unicorn:stop"
+      invoke "unicorn:start"
+    end
+  end
+
+  desc "Stop Unicorn"
+  task :stop do
+    on roles(:app) do
+      pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
+      if test("[ -f #{pid_file} ]")
+        execute :kill, "-QUIT $(cat #{pid_file})"
+      end
     end
   end
 end
