@@ -53,37 +53,26 @@ set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 
 namespace :unicorn do
-  desc "Start Unicorn"
   task :start do
     on roles(:app) do
-      # 古いソケットとPIDを削除
-      execute :rm, "-f #{shared_path}/tmp/pids/unicorn.pid"
-      execute :rm, "-f #{shared_path}/sockets/unicorn.sock"
-
-      # Unicorn 起動
+      execute :rm, "-f #{shared_path}/tmp/pids/unicorn.pid #{shared_path}/sockets/unicorn.sock"
       within current_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec unicorn -c #{current_path}/config/unicorn.rb -E #{fetch(:rails_env)} -D"
-        end
+        execute :bundle, "exec unicorn -c #{current_path}/config/unicorn.rb -E #{fetch(:rails_env)} -D"
       end
     end
   end
 
-  desc "Restart Unicorn"
+  task :stop do
+    on roles(:app) do
+      pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
+      execute :kill, "-QUIT $(cat #{pid_file}) || true" if test("[ -f #{pid_file} ]")
+    end
+  end
+
   task :restart do
     on roles(:app) do
       invoke "unicorn:stop"
       invoke "unicorn:start"
-    end
-  end
-
-  desc "Stop Unicorn"
-  task :stop do
-    on roles(:app) do
-      pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
-      if test("[ -f #{pid_file} ]")
-        execute :kill, "-QUIT $(cat #{pid_file})"
-      end
     end
   end
 end
