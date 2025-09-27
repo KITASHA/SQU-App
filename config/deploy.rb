@@ -54,15 +54,16 @@ set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 
 namespace :unicorn do
   pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
+  socket_file = "#{shared_path}/sockets/unicorn.sock"
 
   task :stop do
     on roles(:app) do
       if test("[ -f #{pid_file} ]")
-        # PID が生きていれば終了、死んでいれば削除
         pid_alive = test("kill -0 $(cat #{pid_file}) > /dev/null 2>&1")
         execute :kill, "-QUIT $(cat #{pid_file})", raise_on_non_zero_exit: false if pid_alive
         execute :rm, "-f #{pid_file}" unless pid_alive
       end
+      execute :rm, "-f #{socket_file}" if test("[ -f #{socket_file} ]")
     end
   end
 
@@ -82,9 +83,8 @@ namespace :unicorn do
   end
 end
 
+after 'deploy:publishing', 'unicorn:restart'
+
 # Railsアセットプリコンパイルを有効
 set :assets_roles, [:web, :app]
 set :rails_env, 'production'
-
-# デプロイ後に Unicorn を再起動
-after 'deploy:publishing', 'unicorn:restart'
