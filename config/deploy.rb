@@ -52,42 +52,6 @@ set :default_env, -> {
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 
-namespace :deploy do
-  # 古い assets を削除
-  task :clear_assets do
-    on roles(:web) do
-      within release_path do
-        execute :rm, '-rf', 'public/assets'
-      end
-    end
-  end
-
-  # プリコンパイル用の空ディレクトリを作成
-  task :prepare_assets_dirs do
-    on roles(:app) do
-      execute :mkdir, '-p', "#{release_path}/app/assets/javascripts"
-      execute :touch, "#{release_path}/app/assets/javascripts/.keep"
-      execute :mkdir, '-p', "#{release_path}/app/assets/images"
-      execute :touch, "#{release_path}/app/assets/images/.keep"
-    end
-  end
-
-  before 'deploy:assets:precompile', 'deploy:clear_assets'
-  before 'deploy:assets:precompile', 'deploy:prepare_assets_dirs'
-
-  # DB マイグレーション
-  desc 'Run database migrations'
-  task :migrate do
-    on roles(:app) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec rails db:migrate"
-        end
-      end
-    end
-  end
-end
-
 namespace :unicorn do
   pid_file = "#{shared_path}/tmp/pids/unicorn.pid"
 
@@ -111,11 +75,16 @@ namespace :unicorn do
 
   task :restart do
     on roles(:app) do
-      invoke 'unicorn:stop'
+      # PID ファイルが残っている場合は強制削除
+      if test("[ -f #{pid_file} ]")
+        execute :rm, "-f #{pid_file}"
+      end
       invoke 'unicorn:start'
     end
   end
 end
+
+after 'deploy:publishing', 'unicorn:restart'
 
 # Railsアセットプリコンパイルを有効
 set :assets_roles, [:web, :app]
