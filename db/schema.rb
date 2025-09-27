@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_27_173414) do
   create_table "active_storage_attachments", charset: "utf8mb3", collation: "utf8mb3_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -112,6 +112,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_16_050700) do
     t.boolean "selected", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "form_text"
   end
 
   create_table "topics", charset: "utf8mb3", collation: "utf8mb3_general_ci", force: :cascade do |t|

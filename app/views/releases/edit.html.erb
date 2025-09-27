@@ -28,6 +28,12 @@
           </div>
 
           <div class="form-group mb-4">
+          <%= form.label :form_text, "フォームのテキスト", class: 'form-label' %>
+          <%= form.text_field :form_text, class: 'form-control' %>
+          <div class="invalid-feedback">フォームボタンに表示するテキストを入力してください。</div>
+          </div>
+
+          <div class="form-group mb-4">
             <%= form.label :form_url, "フォームのURL", class: 'form-label' %>
             <%= form.text_field :form_url, class: 'form-control' %>
             <div class="invalid-feedback">フォームのURLを入力してください。</div>

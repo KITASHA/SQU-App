@@ -8,7 +8,7 @@
     <p class="lead"><%= @release.body.gsub("\n", "<br>").html_safe %></p>
 
     <% if @release.form_url.present? %>
-      <a href="<%= @release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;">アンケートに回答する</a>
+      <a href="<%= @release.form_url %>" class="btn btn-primary btn-lg" style="margin: 10px;"> <%= @release.form_text.presence || "フォーム" %></a>
     <% end %>
   </div>
 
