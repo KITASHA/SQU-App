@@ -14,11 +14,12 @@
 
   <!-- 画像部分 -->
   <% if @release.image.attached? %>
-    <div class="col-md-5 order-md-1 text-center">
-      <%= image_tag @release.image, class: 'img-fluid rounded-start', alt: @release.title %>
-    </div>
+    <%= image_tag(@release.image, class: "col-md-5 order-md-1 text-center", alt: @release.title) %>
+  <% else %>
+    <%= image_tag('/images/Msukuimage.jpg', class: "col-md-5 order-md-1 text-center", alt: @release.title) %>
   <% end %>
 </div>
+
 <hr class="featurette-divider" style="margin-top: 40px;">
   <!-- ボタンセクション -->
   <div class="d-flex justify-content-end">

@@ -25,14 +25,23 @@
           <div class="form-group mb-4">
             <%= form.label :image, "画像をアップロード", class: 'form-label' %>
             <%= form.file_field :image, class: 'form-control' %>
+
+            <% if @release.image.attached? %>
+              <div class="form-check mt-2">
+                <%= form.check_box :remove_image, { class: 'form-check-input' }, '1', '0' %>
+                <%= form.label :remove_image, "画像を削除する", class: 'form-check-label' %>
+              </div>
+            <% end %>
           </div>
 
+          <!-- フォームテキスト入力 -->
           <div class="form-group mb-4">
-          <%= form.label :form_text, "フォームのテキスト", class: 'form-label' %>
-          <%= form.text_field :form_text, class: 'form-control' %>
-          <div class="invalid-feedback">フォームボタンに表示するテキストを入力してください。</div>
+            <%= form.label :form_text, "フォームのテキスト", class: 'form-label' %>
+            <%= form.text_field :form_text, class: 'form-control' %>
+            <div class="invalid-feedback">フォームボタンに表示するテキストを入力してください。</div>
           </div>
 
+          <!-- フォームURL入力 -->
           <div class="form-group mb-4">
             <%= form.label :form_url, "フォームのURL", class: 'form-label' %>
             <%= form.text_field :form_url, class: 'form-control' %>
@@ -45,7 +54,7 @@
               <div class="col-auto">
                 <%= form.submit "更新", class: "btn btn-primary" %>
               </div>
-              <div class="col-auto">  
+              <div class="col-auto">
                 <%= link_to "戻る", releases_path, class: "btn btn-secondary me-3" %>
               </div>
             </div>

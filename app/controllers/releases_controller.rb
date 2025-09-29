@@ -60,7 +60,7 @@ class ReleasesController < ApplicationController
 
   private
   def release_params
-    params.require(:release).permit(:title, :body, :image, :form_url, :form_text, :selected)
+    params.require(:release).permit(:title, :body, :image, :form_url, :form_text, :remove_image, :selected)
   end
 
   def set_release
