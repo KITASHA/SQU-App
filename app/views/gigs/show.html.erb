@@ -24,9 +24,9 @@
         <% days_of_week = ["日", "月", "火", "水", "木", "金", "土"] %>
         <p style="font-size: 1.2em; font-weight: ">
           <%= "#{@gig.date.strftime("%y年%m月%d日")} (#{days_of_week[@gig.date.wday]})" %><br>
-          <%= @gig.start_time.strftime("%H時%M分") %> ~ 
+          <%= @gig.start_time.strftime("%H時%M分") %>
           <% if @gig.end_time.present? %> 
-          <%= @gig.end_time.strftime("%H時%M分") %>
+          <%= @gig.end_time.strftime(" ~ "+"%H時%M分") %>
           <% end %>
         </p>
       </div>
@@ -44,7 +44,7 @@
       </div>
 
       <!-- リンク -->
-      <h4>リンク</h4>
+      <h4>[リンク]</h4>
       <% (1..3).each do |i| %>
         <% link_name = @gig.send("link_name_#{i}") %>
         <% link_url  = @gig.send("link_url_#{i}") %>

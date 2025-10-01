@@ -69,11 +69,11 @@
           <% (1..3).each do |i| %>
             <div class="row mb-2">
               <div class="col-md-4">
-                <%= form.label "link_name_#{i}", "リンク名", class: "form-label" %>
+                <%= form.label "link_name_#{i}", "リンク名#{i}", class: "form-label" %>
                 <%= form.text_field "link_name_#{i}", class: "form-control" %>
               </div>
               <div class="col-md">
-                <%= form.label "link_url_#{i}", "リンクURL", class: "form-label" %>
+                <%= form.label "link_url_#{i}", "リンクURL#{i}", class: "form-label" %>
                 <%= form.text_field "link_url_#{i}", class: "form-control" %>
               </div>
             </div>
@@ -95,4 +95,5 @@
     </div>
   </div>
 </div>
+
 

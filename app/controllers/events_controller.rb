@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :move_to_root, only: [:new, :create, :edit, :update, :destroy]
+  before_action :cleanup_old_events, only: :index
 
   def index
     @events = Event.all
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   def event_params
     params.require(:event).permit(:date, :start_time, :finish_time, :location)
   end
@@ -35,5 +37,8 @@ class EventsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
+  def cleanup_old_events
+    Event.where('date < ?', Date.today).destroy_all
+  end
 end
