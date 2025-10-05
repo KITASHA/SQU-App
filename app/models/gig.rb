@@ -7,5 +7,4 @@ class Gig < ApplicationRecord
   has_many :gig_bands, dependent: :destroy
   has_many :bands, through: :gig_bands
   has_many_attached :images
-  has_one_attached :image  
 end
