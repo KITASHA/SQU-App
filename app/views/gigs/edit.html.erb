@@ -81,9 +81,10 @@
         
         <!-- 画像 -->
         <div class="mb-3">
-          <%= form.label :image, 'フライヤー', class: "form-label" %>
-          <%= form.file_field :image, class: "form-control" %>
+          <%= form.label :images, 'フライヤー（複数可）', class: "form-label" %>
+          <%= form.file_field :images, multiple: true, accept: "image/*", class: "form-control" %>
         </div>
+
         
         <!-- 更新ボタン -->
         <div class="d-flex justify-content-end">
